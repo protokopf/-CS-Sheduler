@@ -8,29 +8,42 @@ namespace OrganizerCore.View.WindowTypes
 {
     public class PluralWindow : BasicWindow
     {
-        private int mCurrentWindowIndex;
+        private int mCurrentWindowIndex = 0;
         private void SlideNextWindow()
         {
-            Childs[mCurrentWindowIndex].OutFocus();
-            while (true)
+            if (Childs.Count != 0)
             {
-                mCurrentWindowIndex = (mCurrentWindowIndex == Childs.Count) ? (0) : (mCurrentWindowIndex + 1);
-                if (Childs[mCurrentWindowIndex].IsHidden)
-                    continue;
-                Childs[mCurrentWindowIndex].InFocus();
-                break;
+                Childs[mCurrentWindowIndex].OutFocus();
+                while (true)
+                {
+                    mCurrentWindowIndex = (mCurrentWindowIndex == Childs.Count) ? (0) : (mCurrentWindowIndex + 1);
+                    if (Childs[mCurrentWindowIndex].IsHidden)
+                        continue;
+                    Childs[mCurrentWindowIndex].InFocus();
+                    break;
+                }
             }
         }
         private void SlidePrevWindow()
         {
-            Childs[mCurrentWindowIndex].OutFocus();
-            mCurrentWindowIndex = (mCurrentWindowIndex == 0) ? (Childs.Count) : (mCurrentWindowIndex - 1);
-            Childs[mCurrentWindowIndex].InFocus();
+            if (Childs.Count != 0)
+            {
+                Childs[mCurrentWindowIndex].OutFocus();
+                while (true)
+                {
+                    mCurrentWindowIndex = (mCurrentWindowIndex == 0) ? (Childs.Count - 1) : (mCurrentWindowIndex - 1);
+                    if (Childs[mCurrentWindowIndex].IsHidden)
+                        continue;
+                    Childs[mCurrentWindowIndex].InFocus();
+                    break;
+                }
+            }
         }
 
         public PluralWindow() : base()
         {
-            Childs[mCurrentWindowIndex = 0].InFocus();
+            if(Childs.Count != 0)
+                Childs[mCurrentWindowIndex].InFocus();
         }
 
         public override void Draw()
@@ -54,6 +67,12 @@ namespace OrganizerCore.View.WindowTypes
                     activeWindow = Childs[mCurrentWindowIndex];
                     break;
             }
+        }
+
+        public override void Action()
+        {
+            ActionEventArgs e = new ActionEventArgs();
+            OnAction(e);
         }
     }
 }

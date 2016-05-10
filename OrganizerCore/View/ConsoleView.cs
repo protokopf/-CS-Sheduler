@@ -12,10 +12,24 @@ namespace OrganizerCore.View
         private BasicWindow mBasicWindow = null;
         private BasicWindow mActiveWindow = null;
 
+        private void ClearScreen()
+        {
+            if(mActiveWindow != null)
+                mActiveWindow.Clear();
+        }
+        private void DrawScreen()
+        {
+            if(mActiveWindow != null)
+                mActiveWindow.Draw();
+        }
+
         private void DesignConsole()
         {
             Console.CursorVisible = false;
-            Console.SetWindowSize(SizeX, SizeY);
+            Console.SetBufferSize(SizeX, SizeY);
+            Console.WindowHeight = SizeY + 1;
+            Console.WindowWidth = SizeX + 1;
+            Console.Title = "Sheduler";
             mBasicWindow = new PluralWindow()
             {
                 BackgroundColor = ConsoleColor.White,
@@ -24,8 +38,36 @@ namespace OrganizerCore.View
                 PositionY = 0,
                 Width = SizeX,
                 Height = SizeY,
-                IsHidden = false
-            }
+                IsHidden = false, 
+                Parent = null
+            };
+            BasicWindow b1 = new PluralWindow()
+            {
+                BackgroundColor = ConsoleColor.White,
+                FontColor = ConsoleColor.Black,
+                PositionX = 48,
+                PositionY = 15,
+                Width = 21,
+                Height = 15,
+                IsHidden = false,
+                Parent = null
+            };
+
+            BasicWindow b2 = new PluralWindow()
+            {
+                BackgroundColor = ConsoleColor.White,
+                FontColor = ConsoleColor.Black,
+                PositionX = 15,
+                PositionY = 2,
+                Width = 21,
+                Height = 15,
+                IsHidden = false,
+                Parent = null
+            };
+
+            mBasicWindow.AddChildWindow(b1);
+            mBasicWindow.AddChildWindow(b2);
+            mActiveWindow = mBasicWindow;
         }
 
         public interface ConsoleViewCommunicator
@@ -44,28 +86,21 @@ namespace OrganizerCore.View
 
         public void MainLoop()
         {
+            DrawScreen();
             while(true)
             {
                 if(Console.KeyAvailable)
                 {
+                    ClearScreen();
                     mActiveWindow.KeyReact(Console.ReadKey().Key, mActiveWindow);
+                    DrawScreen();
                 }
-                ClearScreen();
-                UpdateListeners();
-                DrawScreen();
+                //ClearScreen();
+                //DrawScreen();
             }
         }
 
-        public void UpdateListeners()
-        {
 
-        }
-        public void ClearScreen() 
-        {
-        }
-        public void DrawScreen() 
-        { 
-        }
 
     }
 }

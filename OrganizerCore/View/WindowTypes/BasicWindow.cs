@@ -25,9 +25,6 @@ namespace OrganizerCore.View.WindowTypes
         public int Height    { get; set; }
         public bool IsHidden { get; set; }
 
-        
-        public abstract string GetData();
-
         public abstract void Action();
         public abstract void KeyReact(ConsoleKey key, BasicWindow activeWindow);
 
@@ -36,6 +33,7 @@ namespace OrganizerCore.View.WindowTypes
             if(Event != null)
                 Event.Invoke(this,e);
         }
+
         public    virtual void Draw()
         {
             Console.BackgroundColor = BackgroundColor;
@@ -71,6 +69,21 @@ namespace OrganizerCore.View.WindowTypes
             }
             Console.ResetColor();
         }
+        public    virtual void Clear()
+        {
+            int maxY = PositionY + Height;
+            int maxX = PositionX + Width;
+            for (int i = PositionY; i < maxY; ++i)
+            {
+                for (int j = PositionX; j < maxX; ++j)
+                {
+                    Console.SetCursorPosition(j, i);
+                    Console.Write(' ');
+                }
+            }
+            Console.ResetColor();
+        }
+
         public    virtual void AddChildWindow(BasicWindow chWindow)
         {
             Childs.Add(chWindow);

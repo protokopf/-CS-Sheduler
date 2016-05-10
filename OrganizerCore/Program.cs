@@ -10,6 +10,7 @@ using System.Xml.XPath;
 using OrganizerCore.Model;
 using OrganizerCore.PackageBases;
 using OrganizerCore.View.WindowTypes;
+using OrganizerCore.View;
 
 namespace OrganizerCore
 {
@@ -17,7 +18,8 @@ namespace OrganizerCore
     {
         public static void Main(string[] args)
         {
-            
+            ConsoleView view = new ConsoleView((int)ConsoleProperties.Width, (int)ConsoleProperties.Height);
+            view.MainLoop();
         }
     }
 }
