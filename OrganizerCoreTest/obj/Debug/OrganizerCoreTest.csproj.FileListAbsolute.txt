@@ -1,0 +1,9 @@
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\bin\Debug\OrganizerCoreTest.dll
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\bin\Debug\OrganizerCoreTest.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\bin\Debug\nunit.framework.dll
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\bin\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\bin\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\bin\Debug\nunit.framework.xml
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\obj\Debug\OrganizerCoreTest.csprojResolveAssemblyReference.cache
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\obj\Debug\OrganizerCoreTest.dll
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCoreTest\obj\Debug\OrganizerCoreTest.pdb

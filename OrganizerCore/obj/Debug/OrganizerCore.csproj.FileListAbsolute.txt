@@ -1,0 +1,19 @@
+E:\Костя\ШАГ\2 cеместр\Net\Projects\NewProjects\OrganizerCore\OrganizerCore\bin\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\NewProjects\OrganizerCore\OrganizerCore\obj\Debug\OrganizerCore.csprojResolveAssemblyReference.cache
+E:\Костя\ШАГ\2 cеместр\Net\Projects\NewProjects\OrganizerCore\OrganizerCore\obj\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\NewProjects\OrganizerCore\OrganizerCore\bin\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\NewProjects\OrganizerCore\OrganizerCore\obj\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore\OrganizerCore\obj\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore\OrganizerCore\obj\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore\OrganizerCore\bin\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore\OrganizerCore\bin\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore\OrganizerCore\obj\Debug\OrganizerCore.csprojResolveAssemblyReference.cache
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore — делай тут\OrganizerCore\obj\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore\OrganizerCore — делай тут\OrganizerCore\obj\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\obj\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\obj\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\bin\Debug\OrganizerCore.exe
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\bin\Debug\OrganizerCore.pdb
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\bin\Debug\nunit.framework.dll
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\bin\Debug\nunit.framework.xml
+E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\obj\Debug\OrganizerCore.csprojResolveAssemblyReference.cache

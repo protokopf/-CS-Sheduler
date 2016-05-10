@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package>
+    <ID>0</ID>
+    <BeginTime>16.04.2016 11:45:45</BeginTime>
+    <EndTime>16.04.2016 11:45:45</EndTime>
+    <Name>Kostya</Name>
+    <Description>Desc1</Description>
+  </package>
+  <package>
+    <ID>1</ID>
+    <BeginTime>16.04.2016 11:45:45</BeginTime>
+    <EndTime>16.04.2016 11:45:45</EndTime>
+    <Name>Pasha</Name>
+    <Description>Desc2</Description>
+  </package>
+</packages>
