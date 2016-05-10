@@ -37,29 +37,29 @@ namespace OrganizerCore.Model
             get { return mId; }
         }
 
-        protected DateTime mBeginTime;
-        public DateTime BeginTime
+        protected   DateTime mBeginTime;
+        public      DateTime BeginTime
         {
             get { return mBeginTime; }
             set { mBeginTime = value; }
         }
 
-        protected DateTime mEndTime;
-        public DateTime EndTime
+        protected   DateTime mEndTime;
+        public      DateTime EndTime
         {
             get { return mEndTime; }
             set { mEndTime = value; }
         }
 
-        private string mName;
-        public string  Name
+        private     string mName;
+        public      string  Name
         {
             get { return mName; }
             set { mName = value; }
         }
 
-        private string mDescription;
-        public string  Description
+        private     string mDescription;
+        public      string  Description
         {
             get { return mDescription; }
             set { mDescription = value; }

@@ -22,7 +22,6 @@ namespace OrganizerCore.Model
             foreach(var chain in package.Dictionary)
             {
                 PropertyInfo prop = taskType.GetProperty(chain.Key);
-               
                 if (prop.CanWrite)
                 {
                     MethodInfo meth = prop.PropertyType.GetMethod("Parse", new Type[] { typeof(string) }, null);
