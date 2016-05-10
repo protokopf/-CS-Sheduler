@@ -9,6 +9,7 @@ using System.Xml.XPath;
 
 using OrganizerCore.Model;
 using OrganizerCore.PackageBases;
+using OrganizerCore.View.WindowTypes;
 
 namespace OrganizerCore
 {
@@ -16,13 +17,6 @@ namespace OrganizerCore
     {
         public static void Main(string[] args)
         {
-            XDocument document = XDocument.Load("packages.xml");
-            var packages = document.XPathSelectElements("packages/package/.");
-            foreach(XElement nav in packages)
-            {
-                Console.WriteLine(nav.ToString());
-                Console.WriteLine("------------------------------------------");
-            }
             
         }
     }

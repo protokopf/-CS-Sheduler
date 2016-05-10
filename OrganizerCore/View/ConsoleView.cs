@@ -3,13 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrganizerCore.View.WindowTypes;
 
 namespace OrganizerCore.View
 {
     class ConsoleView
     {
-        private List<MyWindow> mWindows;
-        private MyWindow mActiveWindow;
+        private BasicWindow mBasicWindow = null;
+        private BasicWindow mActiveWindow = null;
+
+        private void DesignConsole()
+        {
+            Console.CursorVisible = false;
+            Console.SetWindowSize(SizeX, SizeY);
+            mBasicWindow = new PluralWindow()
+            {
+                BackgroundColor = ConsoleColor.White,
+                FontColor = ConsoleColor.Black,
+                PositionX = 0,
+                PositionY = 0,
+                Width = SizeX,
+                Height = SizeY,
+                IsHidden = false
+            }
+        }
 
         public interface ConsoleViewCommunicator
         {
@@ -22,7 +39,7 @@ namespace OrganizerCore.View
         {
             SizeX = x;
             SizeY = y;
-            Console.SetWindowSize(x, y);
+            DesignConsole();
         }
 
         public void MainLoop()
@@ -31,7 +48,7 @@ namespace OrganizerCore.View
             {
                 if(Console.KeyAvailable)
                 {
-                    // обработать нажатия клавиш
+                    mActiveWindow.KeyReact(Console.ReadKey().Key, mActiveWindow);
                 }
                 ClearScreen();
                 UpdateListeners();

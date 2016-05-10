@@ -51,14 +51,14 @@
     <Compile Include="Model\PackageComparers.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Model\TaskPackageConvertor.cs" />
-    <Compile Include="PackageBase\PackageBases.cs" />
+    <Compile Include="Model\PackageBase\PackageBases.cs" />
     <Compile Include="Presenter\ConsolePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ConsoleView.cs" />
     <Compile Include="View\WindowTypes\BasicWindow.cs" />
     <Compile Include="View\WindowTypes\ExtraTypes.cs" />
-    <Compile Include="View\WindowTypes\TextWindow.cs" />
+    <Compile Include="View\WindowTypes\PluralWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

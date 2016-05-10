@@ -19,3 +19,8 @@ E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — �
 E:\Костя\ШАГ\2 cеместр\Net\Projects\MyProjects\OrganizerCore — копия\OrganizerCore — делай тут\OrganizerCore\obj\Debug\OrganizerCore.csprojResolveAssemblyReference.cache
 E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\obj\Debug\OrganizerCore.exe
 E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\obj\Debug\OrganizerCore.pdb
+E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\obj\Debug\OrganizerCore.csprojResolveAssemblyReference.cache
+E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\bin\Debug\OrganizerCore.exe
+E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\bin\Debug\OrganizerCore.pdb
+E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\bin\Debug\nunit.framework.dll
+E:\Программирование\C#\OrganizerCore\sheduler.git\OrganizerCore\bin\Debug\nunit.framework.xml
