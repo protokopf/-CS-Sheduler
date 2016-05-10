@@ -8,9 +8,12 @@ namespace OrganizerCore.View
 {
     class ConsoleView
     {
+        private List<MyWindow> mWindows;
+        private MyWindow mActiveWindow;
+
         public interface ConsoleViewCommunicator
         {
-            void AddEvent(Package package)
+            
         }
         public int SizeX { get; set; }
         public int SizeY { get; set; }

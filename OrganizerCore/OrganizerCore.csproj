@@ -56,7 +56,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ConsoleView.cs" />
-    <Compile Include="View\Window.cs" />
+    <Compile Include="View\WindowTypes\BasicWindow.cs" />
+    <Compile Include="View\WindowTypes\ExtraTypes.cs" />
+    <Compile Include="View\WindowTypes\TextWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -16,6 +16,5 @@ namespace OrganizerCore.Model
         {
             return base.GetHashCode();
         }
-        
     }
 }

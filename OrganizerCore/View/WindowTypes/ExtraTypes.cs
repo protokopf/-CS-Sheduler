@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrganizerCore.View
+namespace OrganizerCore.View.WindowTypes
 {
-    class Window
+    internal class ActionEventArgs : EventArgs
     {
+        
     }
 }
