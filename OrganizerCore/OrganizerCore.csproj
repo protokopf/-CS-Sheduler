@@ -60,6 +60,7 @@
     <Compile Include="View\ExtraTypes\Drawer.cs" />
     <Compile Include="View\WindowTypes\BasicWindow.cs" />
     <Compile Include="View\ExtraTypes\ExtraTypes.cs" />
+    <Compile Include="View\WindowTypes\ButtonWindow.cs" />
     <Compile Include="View\WindowTypes\PluralWindow.cs" />
   </ItemGroup>
   <ItemGroup>

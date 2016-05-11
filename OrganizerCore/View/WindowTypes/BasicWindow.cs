@@ -12,6 +12,9 @@ namespace OrganizerCore.View.WindowTypes
         public BasicWindow()
         {
             Childs = new List<BasicWindow>();
+            BackgroundColor = ConsoleColor.White;
+            FontColor = ConsoleColor.Black;
+            IsHidden = false;
         }
 
         public event EventHandler<ActionEventArgs> Event;
@@ -27,13 +30,17 @@ namespace OrganizerCore.View.WindowTypes
         public bool IsHidden { get; set; }
         public bool IsWindowChanged { get; set; }
 
-        public abstract void Action();
-        public abstract void KeyReact(ConsoleKeyInfo key, BasicWindow activeWindow);
+        public abstract void KeyReact(ConsoleKeyInfo key,ref BasicWindow activeWindow);
 
         protected virtual void OnAction(ActionEventArgs e)
         {
             if(Event != null)
                 Event.Invoke(this,e);
+        }
+        public    virtual void Action()
+        {
+            ActionEventArgs e = new ActionEventArgs();
+            OnAction(e);
         }
 
         public  void Draw()
@@ -56,16 +63,15 @@ namespace OrganizerCore.View.WindowTypes
                         symbol = (char)Border.LeftDownCorner;
                     else if (i == maxY - 1 && j == maxX - 1)
                         symbol = (char)Border.RightDownCorner;
-                    else if (i == PositionY && j > PositionX)
+                    else if ((i == PositionY || i == maxY - 1 )&& j > PositionX)
                         symbol = (char)Border.UpBorder;
-                    else if (i == maxY - 1 && j > PositionX)
-                        symbol = (char)Border.DownBorder;
-                    else if (i > PositionY && j == PositionX)
+                    else if (i > PositionY && (j == PositionX || j == maxX - 1))
                         symbol = (char)Border.LeftBorder;
-                    else if (i > PositionY && j == maxX - 1)
-                        symbol = (char)Border.RightBorder;
                     else
-                        symbol = (char)Border.Space;
+                    {
+                        //symbol = (char)Border.Space;
+                        continue;
+                    }
                     Console.Write(symbol);
                 }
             }
@@ -79,8 +85,11 @@ namespace OrganizerCore.View.WindowTypes
             {
                 for (int j = PositionX; j < maxX; ++j)
                 {
-                    Console.SetCursorPosition(j, i);
-                    Console.Write(' ');
+                    if (i == PositionY || j == PositionX || i == maxY - 1 || j == maxX - 1)
+                    {
+                        Console.SetCursorPosition(j, i);
+                        Console.Write(' ');
+                    }
                 }
             }
             Console.ResetColor();
@@ -106,7 +115,7 @@ namespace OrganizerCore.View.WindowTypes
         }
         public    virtual void InFocus()
         {
-            BackgroundColor = ConsoleColor.Cyan;
+            BackgroundColor = ConsoleColor.Blue;
             IsWindowChanged = true;
         }
     }

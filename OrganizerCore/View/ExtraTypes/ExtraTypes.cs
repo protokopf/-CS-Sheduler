@@ -29,7 +29,7 @@ namespace OrganizerCore.View.ExtraTypes
     }
     public enum ConsoleProperties : int
     {
-        Height = 40,
+        Height = 50,
         Width = 100
     }
 }

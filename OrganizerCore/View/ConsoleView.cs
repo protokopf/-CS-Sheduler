@@ -14,13 +14,12 @@ namespace OrganizerCore.View
         private BasicWindow mActiveWindow = null;
         private Drawer mWindowDrawer;
 
-        public void RecursiveAddingToDrawerList(BasicWindow window)
+        private void RecursiveAddingToDrawerList(BasicWindow window)
         {
             mWindowDrawer.AddGoal(window);
             foreach (var child in window.Childs)
                 RecursiveAddingToDrawerList(child);
         }
-
         private void DesignConsole()
         {
             Console.CursorVisible = false;
@@ -30,41 +29,54 @@ namespace OrganizerCore.View
             Console.Title = "Sheduler";
             mBasicWindow = new PluralWindow()
             {
-                BackgroundColor = ConsoleColor.White,
-                FontColor = ConsoleColor.Black,
                 PositionX = 0,
                 PositionY = 0,
                 Width = SizeX,
                 Height = SizeY,
-                IsHidden = false, 
-                Parent = null
             };
-            BasicWindow b1 = new PluralWindow()
+            BasicWindow sideBlock = new PluralWindow()
             {
-                BackgroundColor = ConsoleColor.White,
-                FontColor = ConsoleColor.Black,
-                PositionX = 48,
-                PositionY = 15,
-                Width = 21,
-                Height = 15,
-                IsHidden = false,
-                Parent = null
+                PositionX = SizeX - 25,
+                PositionY = 11,
+                Width = 25,
+                Height = 29,
             };
 
-            BasicWindow b2 = new PluralWindow()
+            BasicWindow buttonAdd = new ButtonWindow("ADD")
             {
-                BackgroundColor = ConsoleColor.White,
-                FontColor = ConsoleColor.Black,
-                PositionX = 15,
-                PositionY = 2,
-                Width = 21,
-                Height = 15,
-                IsHidden = false,
-                Parent = null
+                PositionX = SizeX - 18,
+                PositionY = 14,
+                Width = 12,
+                Height = 3
+            };
+            BasicWindow buttonRemove = new ButtonWindow("REM")
+            {
+                PositionX = SizeX - 18,
+                PositionY = 18,
+                Width = 12,
+                Height = 3
+            };
+            sideBlock.AddChildWindow(buttonAdd);
+            sideBlock.AddChildWindow(buttonRemove);
+            BasicWindow timeBlock = new PluralWindow()
+            {
+                PositionX = SizeX - 25,
+                PositionY = 0,
+                Width = 25,
+                Height = 11
+            };
+            BasicWindow runStringBlock = new PluralWindow()
+            {
+                PositionX = 0,
+                PositionY = SizeY - 10,
+                Width = SizeX,
+                Height = 10,
             };
 
-            mBasicWindow.AddChildWindow(b1);
-            mBasicWindow.AddChildWindow(b2);
+            mBasicWindow.AddChildWindow(sideBlock);
+            mBasicWindow.AddChildWindow(timeBlock);
+            mBasicWindow.AddChildWindow(runStringBlock);
+
             mActiveWindow = mBasicWindow;
             RecursiveAddingToDrawerList(mActiveWindow);
         }
@@ -91,13 +103,11 @@ namespace OrganizerCore.View
             {
                 if (Console.KeyAvailable)
                 {
-                    mActiveWindow.KeyReact(Console.ReadKey(), mActiveWindow);
+                    mActiveWindow.KeyReact(Console.ReadKey(true),ref mActiveWindow);
                 }
                 mWindowDrawer.Draw();
             }
         }
-
-
 
     }
 }

@@ -10,6 +10,7 @@ namespace OrganizerCore.View.WindowTypes
     public class PluralWindow : BasicWindow, Drawable
     {
         private int mCurrentWindowIndex = 0;
+
         private void SlideNextWindow()
         {
             if (Childs.Count != 0)
@@ -59,7 +60,8 @@ namespace OrganizerCore.View.WindowTypes
         {
             return base.IsChanged();
         }
-        public override void KeyReact(ConsoleKeyInfo key, BasicWindow activeWindow)
+
+        public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
             switch (key.Key)
             {
@@ -70,17 +72,23 @@ namespace OrganizerCore.View.WindowTypes
                     SlidePrevWindow();
                     break;
                 case ConsoleKey.Enter:
-                    activeWindow = Childs[mCurrentWindowIndex];
+                    if (Childs.Count != 0)
+                    {
+                        activeWindow = Childs[mCurrentWindowIndex];
+                        activeWindow.OutFocus();
+                    }
+                    break;
+                case ConsoleKey.Escape:
+                    if (this.Parent != null)
+                    {
+                        foreach (var child in Childs)
+                            child.OutFocus();
+                        activeWindow = this.Parent;
+                    }
                     break;
                 default:
                     break;
             }
-        }
-
-        public override void Action()
-        {
-            ActionEventArgs e = new ActionEventArgs();
-            OnAction(e);
         }
     }
 }
