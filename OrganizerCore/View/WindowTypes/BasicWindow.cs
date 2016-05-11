@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    public abstract class BasicWindow
+    public abstract class BasicWindow : Drawable
     {
         public BasicWindow()
         {
@@ -24,9 +25,10 @@ namespace OrganizerCore.View.WindowTypes
         public int Width     { get; set; }
         public int Height    { get; set; }
         public bool IsHidden { get; set; }
+        public bool IsWindowChanged { get; set; }
 
         public abstract void Action();
-        public abstract void KeyReact(ConsoleKey key, BasicWindow activeWindow);
+        public abstract void KeyReact(ConsoleKeyInfo key, BasicWindow activeWindow);
 
         protected virtual void OnAction(ActionEventArgs e)
         {
@@ -34,7 +36,7 @@ namespace OrganizerCore.View.WindowTypes
                 Event.Invoke(this,e);
         }
 
-        public    virtual void Draw()
+        public  void Draw()
         {
             Console.BackgroundColor = BackgroundColor;
             Console.ForegroundColor = FontColor;
@@ -69,7 +71,7 @@ namespace OrganizerCore.View.WindowTypes
             }
             Console.ResetColor();
         }
-        public    virtual void Clear()
+        public  void Clean()
         {
             int maxY = PositionY + Height;
             int maxX = PositionX + Width;
@@ -83,6 +85,13 @@ namespace OrganizerCore.View.WindowTypes
             }
             Console.ResetColor();
         }
+        public  bool IsChanged()
+        {
+            bool changed = IsWindowChanged;
+            if (changed)
+                IsWindowChanged = false;
+            return changed;
+        }
 
         public    virtual void AddChildWindow(BasicWindow chWindow)
         {
@@ -93,10 +102,12 @@ namespace OrganizerCore.View.WindowTypes
         public    virtual void OutFocus()
         {
             BackgroundColor = ConsoleColor.White;
+            IsWindowChanged = true;
         }
         public    virtual void InFocus()
         {
             BackgroundColor = ConsoleColor.Cyan;
+            IsWindowChanged = true;
         }
     }
 }

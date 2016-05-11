@@ -9,6 +9,7 @@ namespace OrganizerCore.View.ExtraTypes
     interface Drawable
     {
         void Draw();
-        void IsChanged();
+        void Clean();
+        bool IsChanged();
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    public class PluralWindow : BasicWindow
+    public class PluralWindow : BasicWindow, Drawable
     {
         private int mCurrentWindowIndex = 0;
         private void SlideNextWindow()
@@ -16,10 +17,10 @@ namespace OrganizerCore.View.WindowTypes
                 Childs[mCurrentWindowIndex].OutFocus();
                 while (true)
                 {
-                    mCurrentWindowIndex = (mCurrentWindowIndex == Childs.Count) ? (0) : (mCurrentWindowIndex + 1);
+                    mCurrentWindowIndex = (mCurrentWindowIndex == Childs.Count - 1) ? (0) : (mCurrentWindowIndex + 1);
                     if (Childs[mCurrentWindowIndex].IsHidden)
                         continue;
-                    Childs[mCurrentWindowIndex].InFocus();
+                    Childs[mCurrentWindowIndex].InFocus();                    
                     break;
                 }
             }
@@ -46,16 +47,21 @@ namespace OrganizerCore.View.WindowTypes
                 Childs[mCurrentWindowIndex].InFocus();
         }
 
-        public override void Draw()
+        void Drawable.Draw()
         {
             base.Draw();
-            foreach (var wind in Childs)
-                if(!wind.IsHidden)
-                    wind.Draw();
         }
-        public override void KeyReact(ConsoleKey key, BasicWindow activeWindow)
+        void Drawable.Clean()
         {
-            switch (key)
+            base.Clean();
+        }
+        bool Drawable.IsChanged()
+        {
+            return base.IsChanged();
+        }
+        public override void KeyReact(ConsoleKeyInfo key, BasicWindow activeWindow)
+        {
+            switch (key.Key)
             {
                 case ConsoleKey.UpArrow:
                     SlideNextWindow();
@@ -65,6 +71,8 @@ namespace OrganizerCore.View.WindowTypes
                     break;
                 case ConsoleKey.Enter:
                     activeWindow = Childs[mCurrentWindowIndex];
+                    break;
+                default:
                     break;
             }
         }

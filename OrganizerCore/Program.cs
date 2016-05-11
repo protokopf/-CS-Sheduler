@@ -11,6 +11,7 @@ using OrganizerCore.Model;
 using OrganizerCore.PackageBases;
 using OrganizerCore.View.WindowTypes;
 using OrganizerCore.View;
+using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore
 {

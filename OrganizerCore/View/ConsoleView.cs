@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrganizerCore.View.WindowTypes;
+using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View
 {
@@ -11,16 +12,13 @@ namespace OrganizerCore.View
     {
         private BasicWindow mBasicWindow = null;
         private BasicWindow mActiveWindow = null;
+        private Drawer mWindowDrawer;
 
-        private void ClearScreen()
+        public void RecursiveAddingToDrawerList(BasicWindow window)
         {
-            if(mActiveWindow != null)
-                mActiveWindow.Clear();
-        }
-        private void DrawScreen()
-        {
-            if(mActiveWindow != null)
-                mActiveWindow.Draw();
+            mWindowDrawer.AddGoal(window);
+            foreach (var child in window.Childs)
+                RecursiveAddingToDrawerList(child);
         }
 
         private void DesignConsole()
@@ -68,6 +66,7 @@ namespace OrganizerCore.View
             mBasicWindow.AddChildWindow(b1);
             mBasicWindow.AddChildWindow(b2);
             mActiveWindow = mBasicWindow;
+            RecursiveAddingToDrawerList(mActiveWindow);
         }
 
         public interface ConsoleViewCommunicator
@@ -81,22 +80,20 @@ namespace OrganizerCore.View
         {
             SizeX = x;
             SizeY = y;
+            mWindowDrawer = new Drawer();
             DesignConsole();
         }
 
         public void MainLoop()
         {
-            DrawScreen();
+            mWindowDrawer.InitialDrawing();
             while(true)
             {
-                if(Console.KeyAvailable)
+                if (Console.KeyAvailable)
                 {
-                    ClearScreen();
-                    mActiveWindow.KeyReact(Console.ReadKey().Key, mActiveWindow);
-                    DrawScreen();
+                    mActiveWindow.KeyReact(Console.ReadKey(), mActiveWindow);
                 }
-                //ClearScreen();
-                //DrawScreen();
+                mWindowDrawer.Draw();
             }
         }
 
