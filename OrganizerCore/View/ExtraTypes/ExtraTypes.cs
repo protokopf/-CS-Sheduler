@@ -33,4 +33,9 @@ namespace OrganizerCore.View.ExtraTypes
         Height = 50,
         Width = 100
     }
+    public enum WindowSymbols : int
+    {
+        ArrowUp = '\x25b2',
+        ArrowDown = '\x25bc'
+    }
 }

@@ -52,5 +52,9 @@ namespace OrganizerCore.View.WindowTypes
                     break;
             }
         }
+        public override void FromParentAction(ref BasicWindow activeWindow)
+        {
+           
+        }
     }
 }

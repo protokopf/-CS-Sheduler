@@ -71,7 +71,7 @@ namespace OrganizerCore.View.WindowTypes
                     break;
                 case ConsoleKey.Enter:
                     if (Childs.Count != 0)
-                        Childs[mCurrentWindowIndex].Action(ref activeWindow);
+                        Childs[mCurrentWindowIndex].FromParentAction(ref activeWindow);
                     break;
                 case ConsoleKey.Escape:
                     if (this.Parent != null)
@@ -85,11 +85,6 @@ namespace OrganizerCore.View.WindowTypes
                 default:
                     break;
             }
-        }
-        public override void Action(ref BasicWindow activeWindow)
-        {
-            activeWindow = this;
-            activeWindow.OutFocus();
         }
     }
 }

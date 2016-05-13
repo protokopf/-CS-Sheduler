@@ -29,6 +29,11 @@ namespace OrganizerCore.View.WindowTypes
             FontColor = ConsoleColor.Black;
             IsHidden = false;
         }
+        public void AddChildWindow(BasicWindow chWindow)
+        {
+            Childs.Add(chWindow);
+            chWindow.Parent = this;
+        }
 
         public BasicWindow Parent { get; set; }
         public List<BasicWindow> Childs { get; set; }
@@ -107,19 +112,19 @@ namespace OrganizerCore.View.WindowTypes
             if (WinEvent != null)
                 WinEvent.Invoke(this, e);
         }
-        public virtual void Action(ref BasicWindow activeWindow)
+        public virtual void Action()
         {
             OnAction(null);
+        }
+
+        public virtual void FromParentAction(ref BasicWindow activeWindow)
+        {
+            activeWindow = this;
+            activeWindow.OutFocus();
         }
         public virtual void ReactMethod(object sender, ActionEventArgs e)
         {
 
-        }
-
-        public virtual void AddChildWindow(BasicWindow chWindow)
-        {
-            Childs.Add(chWindow);
-            chWindow.Parent = this;
         }
 
         public virtual void OutFocus()

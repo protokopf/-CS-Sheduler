@@ -76,14 +76,9 @@ namespace OrganizerCore.View.WindowTypes
 
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
-            switch(key.Key)
-            {
-                case ConsoleKey.Enter:
-                    Action(ref activeWindow);
-                    break;
-            }
+ 
         }
-        public override void Action(ref BasicWindow activeWindow)
+        public override void FromParentAction(ref BasicWindow activeWindow)
         {
             if (Label != mDefaultString)
                 Label = mDefaultString;
@@ -91,7 +86,7 @@ namespace OrganizerCore.View.WindowTypes
         }
         public override void ReactMethod(object sender, ActionEventArgs e)
         {
-            Label = e.Storage["NewMessage"];
+            Label = e.Storage["Message"];
             this.IsWindowChanged = true;
         }
     }
