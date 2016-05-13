@@ -62,6 +62,7 @@
     <Compile Include="View\WindowTypes\BasicWindow.cs" />
     <Compile Include="View\ExtraTypes\ExtraTypes.cs" />
     <Compile Include="View\WindowTypes\ButtonWindow.cs" />
+    <Compile Include="View\WindowTypes\CurrentTimeWindow.cs" />
     <Compile Include="View\WindowTypes\RunningStringWindow.cs" />
     <Compile Include="View\WindowTypes\PluralWindow.cs" />
   </ItemGroup>

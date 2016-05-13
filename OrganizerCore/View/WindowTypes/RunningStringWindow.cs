@@ -38,8 +38,7 @@ namespace OrganizerCore.View.WindowTypes
             --mLast;
         }
 
-
-        public RunningStringWindow() : base()
+        public RunningStringWindow(int x, int y, int w, int h) : base(x, y, w, h)
         {
             Label = mDefaultString;
 
@@ -57,16 +56,16 @@ namespace OrganizerCore.View.WindowTypes
             int yPos = (Height / 2) + PositionY;
             for(int i = mFirst, cursor = mInnerIndex; i < Width - 1 && i < mLast; ++i, ++cursor)
             {
-                Console.SetCursorPosition(PositionX + i , yPos);
+                Console.SetCursorPosition(PositionX + ((i==0)?1:i), yPos);
                 Console.Write(Label[cursor]);
             }
         }
         void IDrawable.Clean()
         {
             int yPos = (Height / 2) + PositionY;
-            for (int i = 0; i < Width - 1; ++i)
+            for (int i = mFirst; i < Width - 1; ++i)
             {
-                Console.SetCursorPosition(i, yPos);
+                Console.SetCursorPosition(((i == 0) ? 1 : i), yPos);
                 Console.Write(' ');
             }
         }
@@ -80,14 +79,19 @@ namespace OrganizerCore.View.WindowTypes
             switch(key.Key)
             {
                 case ConsoleKey.Enter:
-                    Label = mDefaultString;
+                    Action(ref activeWindow);
                     break;
             }
         }
-        public override void Action()
+        public override void Action(ref BasicWindow activeWindow)
         {
             if (Label != mDefaultString)
                 Label = mDefaultString;
+            this.IsWindowChanged = true;
+        }
+        public override void ReactMethod(object sender, ActionEventArgs e)
+        {
+            Label = e.Storage["NewMessage"];
             this.IsWindowChanged = true;
         }
     }

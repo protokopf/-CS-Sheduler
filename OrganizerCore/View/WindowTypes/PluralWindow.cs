@@ -40,7 +40,7 @@ namespace OrganizerCore.View.WindowTypes
             }
         }
 
-        public PluralWindow() : base()
+        public PluralWindow(int x, int y, int w, int h) : base(x,y,w,h)
         {
             if(Childs.Count != 0)
                 Childs[mCurrentWindowIndex].InFocus();
@@ -71,10 +71,7 @@ namespace OrganizerCore.View.WindowTypes
                     break;
                 case ConsoleKey.Enter:
                     if (Childs.Count != 0)
-                    {
-                        activeWindow = Childs[mCurrentWindowIndex];
-                        activeWindow.OutFocus();
-                    }
+                        Childs[mCurrentWindowIndex].Action(ref activeWindow);
                     break;
                 case ConsoleKey.Escape:
                     if (this.Parent != null)
@@ -88,6 +85,11 @@ namespace OrganizerCore.View.WindowTypes
                 default:
                     break;
             }
+        }
+        public override void Action(ref BasicWindow activeWindow)
+        {
+            activeWindow = this;
+            activeWindow.OutFocus();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace OrganizerCore.View.WindowTypes
         }
 
         public String Caption { get; set; }
-        public ButtonWindow(string caption) : base()
+        public ButtonWindow(string caption, int x, int y, int w, int h) : base(x,y,w,h)
         {
             Caption = caption;
         }
@@ -41,8 +41,14 @@ namespace OrganizerCore.View.WindowTypes
         {
             switch (key.Key)
             {
-                case ConsoleKey.Enter:
-                    Action();
+                case ConsoleKey.Escape:
+                    if (this.Parent != null)
+                    {
+                        foreach (var child in Childs)
+                            child.OutFocus();
+                        activeWindow = this.Parent;
+                        activeWindow.Childs[activeWindow.CurrentWindowIndex].InFocus();
+                    }
                     break;
             }
         }

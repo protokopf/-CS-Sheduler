@@ -27,51 +27,18 @@ namespace OrganizerCore.View
             Console.WindowHeight = SizeY + 1;
             Console.WindowWidth = SizeX + 1;
             Console.Title = "Sheduler";
-            mBasicWindow = new PluralWindow()
-            {
-                PositionX = 0,
-                PositionY = 0,
-                Width = SizeX,
-                Height = SizeY,
-            };
-            BasicWindow sideBlock = new PluralWindow()
-            {
-                PositionX = SizeX - 25,
-                PositionY = 11,
-                Width = 25,
-                Height = 35,
-            };
 
-            BasicWindow buttonAdd = new ButtonWindow("ADD")
-            {
-                PositionX = SizeX - 18,
-                PositionY = 14,
-                Width = 12,
-                Height = 3
-            };
-            BasicWindow buttonRemove = new ButtonWindow("REM")
-            {
-                PositionX = SizeX - 18,
-                PositionY = 18,
-                Width = 12,
-                Height = 3
-            };
-            sideBlock.AddChildWindow(buttonAdd);
-            sideBlock.AddChildWindow(buttonRemove);
-            BasicWindow timeBlock = new PluralWindow()
-            {
-                PositionX = SizeX - 25,
-                PositionY = 0,
-                Width = 25,
-                Height = 11
-            };
-            BasicWindow runStringBlock = new RunningStringWindow()
-            {
-                PositionX = 0,
-                PositionY = SizeY - 5,
-                Width = SizeX,
-                Height = 5,
-            };
+            mBasicWindow = new PluralWindow(0,0,SizeX,SizeY);
+
+            BasicWindow sideBlock = new PluralWindow(SizeX - 25,11,25,35);
+            sideBlock.AddChildWindow(new ButtonWindow("ADD", SizeX - 18, 14, 12, 3));
+            sideBlock.AddChildWindow(new ButtonWindow("REM", SizeX - 18, 18, 12, 3));
+
+            BasicWindow timeBlock = new PluralWindow(SizeX - 25,0,25,11);
+            //// сюда добавится окно с часами
+
+            BasicWindow runStringBlock = new PluralWindow(0,SizeY - 5,SizeX,5);
+            runStringBlock.AddChildWindow(new RunningStringWindow(0, SizeY - 5, SizeX, 5));
 
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);

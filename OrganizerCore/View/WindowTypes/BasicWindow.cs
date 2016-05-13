@@ -17,8 +17,13 @@ namespace OrganizerCore.View.WindowTypes
 
         public event EventHandler<ActionEventArgs> WinEvent;
 
-        public BasicWindow()
+        public BasicWindow(int x, int y, int w, int h)
         {
+            PositionX = x;
+            PositionY = y;
+            Width = w;
+            Height = h;
+
             Childs = new List<BasicWindow>();
             BackgroundColor = ConsoleColor.White;
             FontColor = ConsoleColor.Black;
@@ -102,7 +107,7 @@ namespace OrganizerCore.View.WindowTypes
             if (WinEvent != null)
                 WinEvent.Invoke(this, e);
         }
-        public virtual void Action()
+        public virtual void Action(ref BasicWindow activeWindow)
         {
             OnAction(null);
         }
