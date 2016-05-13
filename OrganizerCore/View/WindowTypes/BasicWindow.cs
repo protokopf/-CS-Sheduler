@@ -9,8 +9,11 @@ namespace OrganizerCore.View.WindowTypes
 {
     public abstract class BasicWindow : IDrawable
     {
-
         protected int mCurrentWindowIndex = 0;
+        public int CurrentWindowIndex
+        {
+            get { return mCurrentWindowIndex; }
+        }
 
         public event EventHandler<ActionEventArgs> WinEvent;
 

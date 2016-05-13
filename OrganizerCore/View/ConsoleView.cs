@@ -39,7 +39,7 @@ namespace OrganizerCore.View
                 PositionX = SizeX - 25,
                 PositionY = 11,
                 Width = 25,
-                Height = 29,
+                Height = 35,
             };
 
             BasicWindow buttonAdd = new ButtonWindow("ADD")
@@ -65,12 +65,12 @@ namespace OrganizerCore.View
                 Width = 25,
                 Height = 11
             };
-            BasicWindow runStringBlock = new PluralWindow()
+            BasicWindow runStringBlock = new RunningStringWindow()
             {
                 PositionX = 0,
-                PositionY = SizeY - 10,
+                PositionY = SizeY - 5,
                 Width = SizeX,
-                Height = 10,
+                Height = 5,
             };
 
             mBasicWindow.AddChildWindow(sideBlock);
