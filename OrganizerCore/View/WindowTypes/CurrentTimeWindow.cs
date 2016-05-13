@@ -15,29 +15,30 @@ namespace OrganizerCore.View.WindowTypes
         private DateTime mTime;
         private StringBuilder mBuilder;
 
-        private int xPos;
-        private int yPos;
+        private int xPos = 5;
+        private int yPos = 5;
 
         private void ChangeTime(object source, ElapsedEventArgs e)
         {
             mTime = DateTime.Now;
+            this.IsWindowChanged = true;
         }
 
         public CurrentTimeWindow(int x, int y,int w, int h)
-            : base(x,y,h,w)
+            : base(x,y,w,h)
         {
             mBuilder = new StringBuilder();
             mTimer = new Timer(1000);
             mTimer.Elapsed += ChangeTime;
             mTimer.Start();
 
-            yPos = PositionY + (Height / 2);
-            yPos = PositionX + ((Width - mTime.ToShortDateString().Length) / 2);
+            yPos = PositionY + Height/2;
+            xPos = PositionX + ((Width - mTime.ToString().Length) / 2);
         }
 
         void IDrawable.Draw()
         {
-            mBuilder.Append(mTime.ToShortTimeString());
+            mBuilder.Append(mTime.ToString());
             Console.SetCursorPosition(xPos, yPos);
             Console.Write(mBuilder.ToString());
         }
@@ -55,7 +56,10 @@ namespace OrganizerCore.View.WindowTypes
             return base.IsChanged();
         }
 
-        public override 
+        public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
+        {
+
+        }
 
     }
 }

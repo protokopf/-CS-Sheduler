@@ -30,12 +30,12 @@ namespace OrganizerCore.View
 
             mBasicWindow = new PluralWindow(0,0,SizeX,SizeY);
 
-            BasicWindow sideBlock = new PluralWindow(SizeX - 25,11,25,35);
+            BasicWindow sideBlock = new PluralWindow(SizeX - 25,11,25,34);
             sideBlock.AddChildWindow(new ButtonWindow("ADD", SizeX - 18, 14, 12, 3));
             sideBlock.AddChildWindow(new ButtonWindow("REM", SizeX - 18, 18, 12, 3));
 
-            BasicWindow timeBlock = new PluralWindow(SizeX - 25,0,25,11);
-            //// сюда добавится окно с часами
+            BasicWindow timeBlock = new PluralWindow(SizeX - 25,0,25,3);
+            timeBlock.AddChildWindow(new CurrentTimeWindow(SizeX - 25, 0, 25, 3));
 
             BasicWindow runStringBlock = new PluralWindow(0,SizeY - 5,SizeX,5);
             runStringBlock.AddChildWindow(new RunningStringWindow(0, SizeY - 5, SizeX, 5));
