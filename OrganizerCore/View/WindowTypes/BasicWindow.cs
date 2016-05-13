@@ -15,10 +15,14 @@ namespace OrganizerCore.View.WindowTypes
             get { return mCurrentWindowIndex; }
         }
 
+        public string Name { get; set; }
+
         public event EventHandler<ActionEventArgs> WinEvent;
 
-        public BasicWindow(int x, int y, int w, int h)
+        public BasicWindow(string name, int x, int y, int w, int h)
         {
+            Name = name;
+
             PositionX = x;
             PositionY = y;
             Width = w;

@@ -28,21 +28,23 @@ namespace OrganizerCore.View
             Console.WindowWidth = SizeX + 1;
             Console.Title = "Sheduler";
 
-            mBasicWindow = new PluralWindow(0,0,SizeX,SizeY);
+            mBasicWindow = new PluralWindow("Main",0,0,SizeX,SizeY);
 
-            BasicWindow sideBlock = new PluralWindow(SizeX - 25,11,25,34);
+            BasicWindow sideBlock = new PluralWindow("Side",SizeX - 25,11,25,34);
             sideBlock.AddChildWindow(new ButtonWindow("ADD", SizeX - 18, 14, 12, 3));
             sideBlock.AddChildWindow(new ButtonWindow("REM", SizeX - 18, 18, 12, 3));
 
-            BasicWindow timeBlock = new PluralWindow(SizeX - 25,0,25,3);
-            timeBlock.AddChildWindow(new CurrentTimeWindow(SizeX - 25, 0, 25, 3));
+            BasicWindow timeBlock = new PluralWindow("TimeBlock",SizeX - 25,0,25,3);
+            timeBlock.AddChildWindow(new CurrentTimeWindow("Time",SizeX - 25, 0, 25, 3));
 
-            BasicWindow runStringBlock = new PluralWindow(0,SizeY - 5,SizeX,5);
-            runStringBlock.AddChildWindow(new RunningStringWindow(0, SizeY - 5, SizeX, 5));
+            BasicWindow runStringBlock = new PluralWindow("RunBlock",0,SizeY - 5,SizeX,5);
+            runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
 
             BasicWindow inputBlock = new InputWindow("Name", 10, 10, 20, 3);
+            BasicWindow formBlock = new FormWindow("FormBlock", 15, 15, 20, 20);
 
             mBasicWindow.AddChildWindow(inputBlock);
+            mBasicWindow.AddChildWindow(formBlock);
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
             mBasicWindow.AddChildWindow(runStringBlock);

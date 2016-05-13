@@ -24,8 +24,8 @@ namespace OrganizerCore.View.WindowTypes
             WinHasChanged();
         }
 
-        public CurrentTimeWindow(int x, int y,int w, int h)
-            : base(x,y,w,h)
+        public CurrentTimeWindow(string name,int x, int y,int w, int h)
+            : base(name,x,y,w,h)
         {
             mBuilder = new StringBuilder();
             mTimer = new Timer(1000);

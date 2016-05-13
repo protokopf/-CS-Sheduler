@@ -9,26 +9,22 @@ namespace OrganizerCore.View.WindowTypes
 {
     class TextWindow : BasicWindow, IDrawable
     {
-        private string mText;
-
-
-        public TextWindow(string text, int x, int y) : base(x,y,text.Length,1)
+        public TextWindow(string text, int x, int y) : base(text,x,y,text.Length,1)
         {
-            mText = text;
             IsInteractable = false;
         }
 
         void IDrawable.Draw()
         {
-            for(int i = 0; i < mText.Length; ++i)
+            for(int i = 0; i < Name.Length; ++i)
             {
                 Console.SetCursorPosition(PositionX + i, PositionY);
-                Console.Write(mText[i]);
+                Console.Write(Name[i]);
             }
         }
         void IDrawable.Clean()
         {
-            for (int i = 0; i < mText.Length; ++i)
+            for (int i = 0; i < Name.Length; ++i)
             {
                 Console.SetCursorPosition(PositionX + i, PositionY);
                 Console.Write(' ');

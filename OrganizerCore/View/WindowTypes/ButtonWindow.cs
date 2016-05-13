@@ -11,16 +11,14 @@ namespace OrganizerCore.View.WindowTypes
     {
         private void DrawCaption()
         {            
-            int initPositionX = (Width - Caption.Length) / 2;
+            int initPositionX = (Width - Name.Length) / 2;
             int initPositionY = Height / 2;
             Console.SetCursorPosition(PositionX + initPositionX,PositionY + initPositionY);
-            Console.Write(Caption);
+            Console.Write(Name);
         }
 
-        public String Caption { get; set; }
-        public ButtonWindow(string caption, int x, int y, int w, int h) : base(x,y,w,h)
+        public ButtonWindow(string caption, int x, int y, int w, int h) : base(caption,x,y,w,h)
         {
-            Caption = caption;
         }
 
         void IDrawable.Draw()

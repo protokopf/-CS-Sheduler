@@ -38,7 +38,7 @@ namespace OrganizerCore.View.WindowTypes
             --mLast;
         }
 
-        public RunningStringWindow(int x, int y, int w, int h) : base(x, y, w, h)
+        public RunningStringWindow(string name,int x, int y, int w, int h) : base(name,x, y, w, h)
         {
             Label = mDefaultString;
 

@@ -11,7 +11,6 @@ namespace OrganizerCore.View.WindowTypes
     class InputWindow : BasicWindow, IDrawable
     {
         private StringBuilder mBuilder;
-        private readonly string mName;
 
         private int mInitPosition = 0;
         private int yPos;
@@ -34,10 +33,9 @@ namespace OrganizerCore.View.WindowTypes
             }
         }
 
-        public InputWindow(string name, int x, int y, int w, int h) : base(x,y,w,h)
+        public InputWindow(string name, int x, int y, int w, int h) : base(name,x,y,w,h)
         {
             mBuilder = new StringBuilder();
-            mName = name;
             yPos = PositionY + Height / 2;
         }
 
@@ -66,7 +64,7 @@ namespace OrganizerCore.View.WindowTypes
         public override void Action()
         {
             ActionEventArgs e = new ActionEventArgs();
-            e.Storage.Add(mName, mBuilder.ToString());
+            e.Storage.Add(Name, mBuilder.ToString());
             base.OnAction(e);
         }
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
@@ -88,6 +86,11 @@ namespace OrganizerCore.View.WindowTypes
                     break;
 
             }
+        }
+
+        public override string ToString()
+        {
+            return mBuilder.ToString();
         }
     }
 }

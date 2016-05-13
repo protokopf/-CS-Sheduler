@@ -9,7 +9,7 @@ namespace OrganizerCore.View.WindowTypes
 {
     public class PluralWindow : BasicWindow, IDrawable
     {
-        private void SlideNextWindow()
+        protected void SlideNextWindow()
         {
             if (Childs.Count != 0)
             {
@@ -24,7 +24,7 @@ namespace OrganizerCore.View.WindowTypes
                 }
             }
         }
-        private void SlidePrevWindow()
+        protected void SlidePrevWindow()
         {
             if (Childs.Count != 0)
             {
@@ -40,7 +40,7 @@ namespace OrganizerCore.View.WindowTypes
             }
         }
 
-        public PluralWindow(int x, int y, int w, int h) : base(x,y,w,h)
+        public PluralWindow(string name,int x, int y, int w, int h) : base(name,x,y,w,h)
         {
             if(Childs.Count != 0)
                 Childs[mCurrentWindowIndex].InFocus();

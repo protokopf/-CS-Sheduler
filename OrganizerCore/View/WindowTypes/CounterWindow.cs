@@ -15,8 +15,6 @@ namespace OrganizerCore.View.WindowTypes
         private int mValue;
         private int yPos;
 
-        private readonly string mName;
-
         private void Increment()
         {
             if (mValue < maxValue)
@@ -34,9 +32,8 @@ namespace OrganizerCore.View.WindowTypes
             }
         }
 
-        public CounterWindow(string name,int x, int y, int w, int h, int max, int min = 0) : base(x,y,w,h)
+        public CounterWindow(string name,int x, int y, int w, int h, int max, int min = 0) : base(name,x,y,w,h)
         {
-            mName = name;
             maxValue = max;
             minValue = mValue =  min;
             yPos = PositionY + Height / 2;
@@ -97,8 +94,13 @@ namespace OrganizerCore.View.WindowTypes
         public override void Action()
         {
             ActionEventArgs e = new ActionEventArgs();
-            e.Storage.Add(mName,mValue.ToString());
+            e.Storage.Add(Name,mValue.ToString());
             OnAction(e);
-        } 
+        }
+
+        public override string ToString()
+        {
+            return mValue.ToString();
+        }
     }
 }
