@@ -7,10 +7,8 @@ using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    public class PluralWindow : BasicWindow, Drawable
+    public class PluralWindow : BasicWindow, IDrawable
     {
-        private int mCurrentWindowIndex = 0;
-
         private void SlideNextWindow()
         {
             if (Childs.Count != 0)
@@ -48,15 +46,15 @@ namespace OrganizerCore.View.WindowTypes
                 Childs[mCurrentWindowIndex].InFocus();
         }
 
-        void Drawable.Draw()
+        void IDrawable.Draw()
         {
             base.Draw();
         }
-        void Drawable.Clean()
+        void IDrawable.Clean()
         {
             base.Clean();
         }
-        bool Drawable.IsChanged()
+        bool IDrawable.IsChanged()
         {
             return base.IsChanged();
         }

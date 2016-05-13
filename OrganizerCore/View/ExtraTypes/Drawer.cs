@@ -8,20 +8,20 @@ namespace OrganizerCore.View.ExtraTypes
 {
     class Drawer
     {
-        private List<Drawable> mListOfGoals;
+        private List<IDrawable> mListOfGoals;
         
         public Drawer()
         {
-            mListOfGoals = new List<Drawable>();
+            mListOfGoals = new List<IDrawable>();
         }
 
         // данный метод будет вызываться из рекурсивной функции, которая предоставит Drawer'у ссылки на
         // все рисуемые объекты
-        public void AddGoal(Drawable dr)
+        public void AddGoal(IDrawable dr)
         {
             mListOfGoals.Add(dr);
         }
-        public void RemoveGoal(Drawable dr)
+        public void RemoveGoal(IDrawable dr)
         {
             mListOfGoals.Remove(dr);
         }

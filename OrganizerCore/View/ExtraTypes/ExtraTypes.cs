@@ -8,11 +8,12 @@ namespace OrganizerCore.View.ExtraTypes
 {
     public class ActionEventArgs : EventArgs
     {
-        public Dictionary<string, string> Storage { get; set; }
-        public void AllocateStorage()
+        private Dictionary<string, string> mStorage = new Dictionary<string, string>();
+        public Dictionary<string, string> Storage 
         {
-            Storage = new Dictionary<string, string>();
-        }  
+            get { return mStorage; }
+            set { mStorage = value; }
+        }
     }
 
     public enum Border : int

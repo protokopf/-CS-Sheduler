@@ -7,7 +7,7 @@ using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    class ButtonWindow : BasicWindow, Drawable
+    class ButtonWindow : BasicWindow, IDrawable
     {
         private void DrawCaption()
         {            
@@ -23,16 +23,16 @@ namespace OrganizerCore.View.WindowTypes
             Caption = caption;
         }
 
-        void Drawable.Draw()
+        void IDrawable.Draw()
         {
             base.Draw();
             DrawCaption();
         }
-        void Drawable.Clean()
+        void IDrawable.Clean()
         {
             base.Clean();
         }
-        bool Drawable.IsChanged()
+        bool IDrawable.IsChanged()
         {
             return base.IsChanged();
         }

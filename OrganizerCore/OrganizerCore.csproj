@@ -56,12 +56,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ConsoleView.cs" />
-    <Compile Include="View\ExtraTypes\Drawable.cs" />
+    <Compile Include="View\ExtraTypes\IConnectable.cs" />
+    <Compile Include="View\ExtraTypes\IDrawable.cs" />
     <Compile Include="View\ExtraTypes\Drawer.cs" />
     <Compile Include="View\WindowTypes\BasicWindow.cs" />
     <Compile Include="View\ExtraTypes\ExtraTypes.cs" />
     <Compile Include="View\WindowTypes\ButtonWindow.cs" />
-    <Compile Include="View\WindowTypes\LabelWindow.cs" />
+    <Compile Include="View\WindowTypes\RunningStringWindow.cs" />
     <Compile Include="View\WindowTypes\PluralWindow.cs" />
   </ItemGroup>
   <ItemGroup>

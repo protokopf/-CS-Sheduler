@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrganizerCore.View.ExtraTypes
 {
-    interface Drawable
+    interface IDrawable
     {
         void Draw();
         void Clean();

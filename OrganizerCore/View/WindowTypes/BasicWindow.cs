@@ -7,8 +7,13 @@ using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    public abstract class BasicWindow : Drawable
+    public abstract class BasicWindow : IDrawable
     {
+
+        protected int mCurrentWindowIndex = 0;
+
+        public event EventHandler<ActionEventArgs> WinEvent;
+
         public BasicWindow()
         {
             Childs = new List<BasicWindow>();
@@ -17,7 +22,6 @@ namespace OrganizerCore.View.WindowTypes
             IsHidden = false;
         }
 
-        public event EventHandler<ActionEventArgs> Event;
         public BasicWindow Parent { get; set; }
         public List<BasicWindow> Childs { get; set; }
 
@@ -30,19 +34,7 @@ namespace OrganizerCore.View.WindowTypes
         public bool IsHidden { get; set; }
         public bool IsWindowChanged { get; set; }
 
-        public abstract void KeyReact(ConsoleKeyInfo key,ref BasicWindow activeWindow);
-
-        protected virtual void OnAction(ActionEventArgs e)
-        {
-            if(Event != null)
-                Event.Invoke(this,e);
-        }
-        public    virtual void Action()
-        {
-            ActionEventArgs e = new ActionEventArgs();
-            OnAction(e);
-        }
-
+        // for IDrawable
         public  void Draw()
         {
             Console.BackgroundColor = BackgroundColor;
@@ -102,21 +94,37 @@ namespace OrganizerCore.View.WindowTypes
             return changed;
         }
 
-        public    virtual void AddChildWindow(BasicWindow chWindow)
+        public virtual void OnAction(ActionEventArgs e)
+        {
+            if (WinEvent != null)
+                WinEvent.Invoke(this, e);
+        }
+        public virtual void Action()
+        {
+            OnAction(null);
+        }
+        public virtual void ReactMethod(object sender, ActionEventArgs e)
+        {
+
+        }
+
+        public virtual void AddChildWindow(BasicWindow chWindow)
         {
             Childs.Add(chWindow);
             chWindow.Parent = this;
         }
 
-        public    virtual void OutFocus()
+        public virtual void OutFocus()
         {
             BackgroundColor = ConsoleColor.White;
             IsWindowChanged = true;
         }
-        public    virtual void InFocus()
+        public virtual void InFocus()
         {
             BackgroundColor = ConsoleColor.Blue;
             IsWindowChanged = true;
         }
+
+        public abstract void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow);
     }
 }

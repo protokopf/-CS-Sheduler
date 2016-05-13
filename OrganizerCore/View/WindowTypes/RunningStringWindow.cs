@@ -7,7 +7,7 @@ using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    class RunningStringWindow : BasicWindow, Drawable
+    class RunningStringWindow : BasicWindow, IDrawable
     {
         private const string mDefaultString = "There is no messages";
         private string Label { get; set; }
@@ -23,15 +23,15 @@ namespace OrganizerCore.View.WindowTypes
 
         }
 
-        void Drawable.Draw()
+        void IDrawable.Draw()
         {
             // тут будет отрисовка строки в середине окна
         }
-        void Drawable.Clean()
+        void IDrawable.Clean()
         {
             // тут строка будет очищаться
         }
-        bool Drawable.IsChanged()
+        bool IDrawable.IsChanged()
         {
             return base.IsChanged();
         }
