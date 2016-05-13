@@ -27,7 +27,9 @@ namespace OrganizerCore.View.WindowTypes
             Childs = new List<BasicWindow>();
             BackgroundColor = ConsoleColor.White;
             FontColor = ConsoleColor.Black;
+
             IsHidden = false;
+            IsInteractable = true;
         }
         public void AddChildWindow(BasicWindow chWindow)
         {
@@ -44,8 +46,10 @@ namespace OrganizerCore.View.WindowTypes
         public int PositionY { get; set; }
         public int Width     { get; set; }
         public int Height    { get; set; }
+
         public bool IsHidden { get; set; }
         public bool IsWindowChanged { get; set; }
+        public bool IsInteractable { get; set; }
 
         // for IDrawable
         public  void Draw()

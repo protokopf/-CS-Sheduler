@@ -66,6 +66,7 @@
     <Compile Include="View\WindowTypes\CurrentTimeWindow.cs" />
     <Compile Include="View\WindowTypes\RunningStringWindow.cs" />
     <Compile Include="View\WindowTypes\PluralWindow.cs" />
+    <Compile Include="View\WindowTypes\TextWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -17,7 +17,7 @@ namespace OrganizerCore.View.WindowTypes
                 while (true)
                 {
                     mCurrentWindowIndex = (mCurrentWindowIndex == Childs.Count - 1) ? (0) : (mCurrentWindowIndex + 1);
-                    if (Childs[mCurrentWindowIndex].IsHidden)
+                    if (Childs[mCurrentWindowIndex].IsHidden || !Childs[mCurrentWindowIndex].IsInteractable)
                         continue;
                     Childs[mCurrentWindowIndex].InFocus();                    
                     break;
@@ -32,7 +32,7 @@ namespace OrganizerCore.View.WindowTypes
                 while (true)
                 {
                     mCurrentWindowIndex = (mCurrentWindowIndex == 0) ? (Childs.Count - 1) : (mCurrentWindowIndex - 1);
-                    if (Childs[mCurrentWindowIndex].IsHidden)
+                    if (Childs[mCurrentWindowIndex].IsHidden || !Childs[mCurrentWindowIndex].IsInteractable)
                         continue;
                     Childs[mCurrentWindowIndex].InFocus();
                     break;
