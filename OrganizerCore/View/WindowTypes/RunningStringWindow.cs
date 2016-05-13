@@ -20,7 +20,7 @@ namespace OrganizerCore.View.WindowTypes
 
         private void MoveStringAlongWindow(object source, ElapsedEventArgs e)
         {
-            this.IsWindowChanged = true;
+            WinHasChanged();
             if(mLast == 0)
             {
                 mFirst = Width;

@@ -74,13 +74,7 @@ namespace OrganizerCore.View.WindowTypes
                         Childs[mCurrentWindowIndex].FromParentAction(ref activeWindow);
                     break;
                 case ConsoleKey.Escape:
-                    if (this.Parent != null)
-                    {
-                        foreach (var child in Childs)
-                            child.OutFocus();
-                        activeWindow = this.Parent;
-                        activeWindow.Childs[activeWindow.CurrentWindowIndex].InFocus();
-                    }
+                    GoToParent(ref activeWindow);
                     break;
                 default:
                     break;

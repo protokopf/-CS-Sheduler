@@ -42,13 +42,7 @@ namespace OrganizerCore.View.WindowTypes
             switch (key.Key)
             {
                 case ConsoleKey.Escape:
-                    if (this.Parent != null)
-                    {
-                        foreach (var child in Childs)
-                            child.OutFocus();
-                        activeWindow = this.Parent;
-                        activeWindow.Childs[activeWindow.CurrentWindowIndex].InFocus();
-                    }
+                    GoToParent(ref activeWindow);
                     break;
             }
         }

@@ -36,6 +36,20 @@ namespace OrganizerCore.View.WindowTypes
             Childs.Add(chWindow);
             chWindow.Parent = this;
         }
+        public void GoToParent(ref BasicWindow activeWindow)
+        {
+            if (this.Parent != null)
+            {
+                foreach (var child in Childs)
+                    child.OutFocus();
+                activeWindow = this.Parent;
+                activeWindow.Childs[activeWindow.CurrentWindowIndex].InFocus();
+            }
+        }
+        public void WinHasChanged()
+        {
+            IsWindowChanged = true;
+        }
 
         public BasicWindow Parent { get; set; }
         public List<BasicWindow> Childs { get; set; }
@@ -134,12 +148,12 @@ namespace OrganizerCore.View.WindowTypes
         public virtual void OutFocus()
         {
             BackgroundColor = ConsoleColor.White;
-            IsWindowChanged = true;
+            WinHasChanged();
         }
         public virtual void InFocus()
         {
             BackgroundColor = ConsoleColor.Blue;
-            IsWindowChanged = true;
+            WinHasChanged();
         }
 
         public abstract void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow);

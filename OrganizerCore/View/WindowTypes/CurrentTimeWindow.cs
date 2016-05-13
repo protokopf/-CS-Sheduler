@@ -21,7 +21,7 @@ namespace OrganizerCore.View.WindowTypes
         private void ChangeTime(object source, ElapsedEventArgs e)
         {
             mTime = DateTime.Now;
-            this.IsWindowChanged = true;
+            WinHasChanged();
         }
 
         public CurrentTimeWindow(int x, int y,int w, int h)

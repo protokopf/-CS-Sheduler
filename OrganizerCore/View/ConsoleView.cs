@@ -37,17 +37,15 @@ namespace OrganizerCore.View
             BasicWindow timeBlock = new PluralWindow(SizeX - 25,0,25,3);
             timeBlock.AddChildWindow(new CurrentTimeWindow(SizeX - 25, 0, 25, 3));
 
-            BasicWindow counterBlock = new CounterWindow("day",5, 5, 5, 3,101,14);
-            BasicWindow textBlock = new TextWindow("blablablabla", 10, 10);
-
             BasicWindow runStringBlock = new PluralWindow(0,SizeY - 5,SizeX,5);
             runStringBlock.AddChildWindow(new RunningStringWindow(0, SizeY - 5, SizeX, 5));
 
+            BasicWindow inputBlock = new InputWindow("Name", 10, 10, 20, 3);
+
+            mBasicWindow.AddChildWindow(inputBlock);
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
             mBasicWindow.AddChildWindow(runStringBlock);
-            mBasicWindow.AddChildWindow(counterBlock);
-            mBasicWindow.AddChildWindow(textBlock);
 
             mActiveWindow = mBasicWindow;
             RecursiveAddingToDrawerList(mActiveWindow);

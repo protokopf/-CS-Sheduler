@@ -22,7 +22,7 @@ namespace OrganizerCore.View.WindowTypes
             if (mValue < maxValue)
             {
                 ++mValue;
-                this.IsWindowChanged = true;
+                WinHasChanged();
             }
         }
         private void Decrement()
@@ -30,7 +30,7 @@ namespace OrganizerCore.View.WindowTypes
             if (mValue > 0)
             {
                 --mValue;
-                this.IsWindowChanged = true;
+                WinHasChanged();
             }
         }
 
