@@ -42,7 +42,7 @@ namespace OrganizerCore.View
 
             BasicWindow inputBlock = new InputWindow("Name", 10, 10, 20, 3);
             //BasicWindow formBlock = new FormWindow("FormBlock", 15, 15, 20, 20);
-            BasicWindow dateTimeWindow = new DateTimeWindow("BeginDate", 15, 15, 30, 6);
+            BasicWindow dateTimeWindow = new DateTimeWindow("BeginDate", 15, 15);
 
             mBasicWindow.AddChildWindow(inputBlock);
             mBasicWindow.AddChildWindow(dateTimeWindow);
