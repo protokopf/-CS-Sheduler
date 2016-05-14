@@ -18,7 +18,7 @@ namespace OrganizerCore.View.WindowTypes
         private void AddChar(char c)
         {
             mBuilder.Append(c);
-            if (mBuilder.Length > Width - 2)
+            if (mBuilder.Length - mInitPosition > Width - 2)
                 ++mInitPosition;
             WinHasChanged();
         }
@@ -27,8 +27,8 @@ namespace OrganizerCore.View.WindowTypes
             if (mBuilder.Length >= 1)
             {
                 mBuilder.Remove(mBuilder.Length - 1, 1);
-                if (mBuilder.Length < Width - 2)
-                    mInitPosition = 0;
+                if (mInitPosition > 0) 
+                    --mInitPosition;
                 WinHasChanged();
             }
         }
@@ -50,6 +50,7 @@ namespace OrganizerCore.View.WindowTypes
         }
         void IDrawable.Clean()
         {
+            base.Clean();
             for (int i = 1; i < Width - 1; ++i)
             {
                 Console.SetCursorPosition(PositionX + i, yPos);

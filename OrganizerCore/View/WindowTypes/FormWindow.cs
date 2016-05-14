@@ -33,10 +33,10 @@ namespace OrganizerCore.View.WindowTypes
             switch (key.Key)
             {
                 case ConsoleKey.UpArrow:
-                    SlideNextWindow();
+                    SlidePrevWindow();
                     break;
                 case ConsoleKey.DownArrow:
-                    SlidePrevWindow();
+                    SlideNextWindow();
                     break;
                 case ConsoleKey.Enter:
                     if (Childs.Count != 0)

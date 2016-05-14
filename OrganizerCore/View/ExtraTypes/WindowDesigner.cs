@@ -49,16 +49,16 @@ namespace OrganizerCore.View.ExtraTypes
             BasicWindow eventForm = new FormWindow(name, x, y, w, h);
             eventForm.Childs.Add(new TextWindow("TITLE", GetCenterX(eventForm, 5), GetCenterY(eventForm, 1, ref step)));
             inputWidth = GetOptimalWidth(eventForm, 2);
-            eventForm.Childs.Add(new InputWindow("Name", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
+            eventForm.AddChildWindow(new InputWindow("Name", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
 
-            eventForm.Childs.Add(new TextWindow("DESCRIPTION", GetCenterX(eventForm, 11), GetCenterY(eventForm, 1, ref step)));
-            eventForm.Childs.Add(new InputWindow("Description", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
+            eventForm.AddChildWindow(new TextWindow("DESCRIPTION", GetCenterX(eventForm, 11), GetCenterY(eventForm, 1, ref step)));
+            eventForm.AddChildWindow(new InputWindow("Description", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
 
-            eventForm.Childs.Add(new TextWindow("Begin Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
-            eventForm.Childs.Add(new DateTimeWindow("BeginDate", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
+            eventForm.AddChildWindow(new TextWindow("Begin Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
+            eventForm.AddChildWindow(new DateTimeWindow("BeginDate", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
 
-            eventForm.Childs.Add(new TextWindow("End Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
-            eventForm.Childs.Add(new DateTimeWindow("EndDate", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
+            eventForm.AddChildWindow(new TextWindow("End Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
+            eventForm.AddChildWindow(new DateTimeWindow("EndDate", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
 
             return eventForm;
 
