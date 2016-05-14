@@ -12,7 +12,9 @@ namespace OrganizerCore.View
     {
         private BasicWindow mBasicWindow = null;
         private BasicWindow mActiveWindow = null;
+
         private Drawer mWindowDrawer;
+        private IWindowDesigner mWindowDesigner;
 
         private void RecursiveAddingToDrawerList(BasicWindow window)
         {
@@ -20,6 +22,7 @@ namespace OrganizerCore.View
             foreach (var child in window.Childs)
                 RecursiveAddingToDrawerList(child);
         }
+
         private void DesignConsole()
         {
             Console.CursorVisible = false;
@@ -40,13 +43,7 @@ namespace OrganizerCore.View
             BasicWindow runStringBlock = new PluralWindow("RunBlock",0,SizeY - 5,SizeX,5);
             runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
 
-            BasicWindow inputBlock = new InputWindow("Name", 10, 10, 20, 3);
-            BasicWindow formBlock = new FormWindow("FormBlock", 15, 15, 20, 20);
-            //BasicWindow dateTimeWindow = new DateTimeWindow("BeginDate", 15, 15);
-
-            mBasicWindow.AddChildWindow(inputBlock);
-            //mBasicWindow.AddChildWindow(dateTimeWindow);
-            mBasicWindow.AddChildWindow(formBlock);
+            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm"))
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
             mBasicWindow.AddChildWindow(runStringBlock);
@@ -59,6 +56,7 @@ namespace OrganizerCore.View
         {
             
         }
+
         public int SizeX { get; set; }
         public int SizeY { get; set; }
 
@@ -66,7 +64,10 @@ namespace OrganizerCore.View
         {
             SizeX = x;
             SizeY = y;
+
             mWindowDrawer = new Drawer();
+            mWindowDesigner = new ShedulerWindowDesigner();
+
             DesignConsole();
         }
 
@@ -76,9 +77,7 @@ namespace OrganizerCore.View
             while(true)
             {
                 if (Console.KeyAvailable)
-                {
                     mActiveWindow.KeyReact(Console.ReadKey(true),ref mActiveWindow);
-                }
                 mWindowDrawer.Draw();
             }
         }

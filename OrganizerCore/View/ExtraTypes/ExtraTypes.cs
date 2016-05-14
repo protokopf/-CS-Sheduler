@@ -28,11 +28,20 @@ namespace OrganizerCore.View.ExtraTypes
         RightBorder     = '\x2502',
         Space           = '\x0020'
     }
+
     public enum ConsoleProperties : int
     {
         Height = 50,
         Width = 100
     }
+    public enum FormWindowProperties : int
+    {
+        PosX = 15,
+        PosY = 15,
+        Width = 40,
+        Height = 40
+    }
+
     public enum WindowSymbols : int
     {
         ArrowUp = '\x25b2',
