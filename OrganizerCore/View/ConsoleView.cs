@@ -41,12 +41,12 @@ namespace OrganizerCore.View
             runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
 
             BasicWindow inputBlock = new InputWindow("Name", 10, 10, 20, 3);
-            //BasicWindow formBlock = new FormWindow("FormBlock", 15, 15, 20, 20);
-            BasicWindow dateTimeWindow = new DateTimeWindow("BeginDate", 15, 15);
+            BasicWindow formBlock = new FormWindow("FormBlock", 15, 15, 20, 20);
+            //BasicWindow dateTimeWindow = new DateTimeWindow("BeginDate", 15, 15);
 
             mBasicWindow.AddChildWindow(inputBlock);
-            mBasicWindow.AddChildWindow(dateTimeWindow);
-            //mBasicWindow.AddChildWindow(formBlock);
+            //mBasicWindow.AddChildWindow(dateTimeWindow);
+            mBasicWindow.AddChildWindow(formBlock);
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
             mBasicWindow.AddChildWindow(runStringBlock);

@@ -8,7 +8,7 @@ using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
-    class FormWindow : PluralWindow
+    class FormWindow : PluralWindow, IDrawable
     {
         public ActionEventArgs StoreInfoFromChild()
         {
@@ -18,13 +18,16 @@ namespace OrganizerCore.View.WindowTypes
                     e.Storage.Add(child.Name, child.ToString());
             return e;
         }
+        private void PlaceAllWindows()
+        {
+
+        }
 
         public FormWindow(string name, int x, int y, int w, int h) : base(name,x,y,w,h)
         {
             AddChildWindow(new SubmitButton("SUBMIT", PositionX + (Width - 10) / 2, PositionY + Height - 4, 10, 3));
         }
-
-
+        
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
             switch (key.Key)

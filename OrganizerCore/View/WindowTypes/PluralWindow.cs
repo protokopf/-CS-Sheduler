@@ -17,7 +17,7 @@ namespace OrganizerCore.View.WindowTypes
                 while (true)
                 {
                     mCurrentWindowIndex = (mCurrentWindowIndex == Childs.Count - 1) ? (0) : (mCurrentWindowIndex + 1);
-                    if (Childs[mCurrentWindowIndex].IsHidden || !Childs[mCurrentWindowIndex].IsInteractable)
+                    if (Childs[mCurrentWindowIndex].IsWindowHidden || !Childs[mCurrentWindowIndex].IsInteractable)
                         continue;
                     Childs[mCurrentWindowIndex].InFocus();                    
                     break;
@@ -32,7 +32,7 @@ namespace OrganizerCore.View.WindowTypes
                 while (true)
                 {
                     mCurrentWindowIndex = (mCurrentWindowIndex == 0) ? (Childs.Count - 1) : (mCurrentWindowIndex - 1);
-                    if (Childs[mCurrentWindowIndex].IsHidden || !Childs[mCurrentWindowIndex].IsInteractable)
+                    if (Childs[mCurrentWindowIndex].IsWindowHidden || !Childs[mCurrentWindowIndex].IsInteractable)
                         continue;
                     Childs[mCurrentWindowIndex].InFocus();
                     break;
@@ -54,11 +54,7 @@ namespace OrganizerCore.View.WindowTypes
         {
             base.Clean();
         }
-        bool IDrawable.IsChanged()
-        {
-            return base.IsChanged();
-        }
-
+ 
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
             switch (key.Key)

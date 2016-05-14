@@ -9,16 +9,28 @@ namespace OrganizerCore.View.WindowTypes
 {
     class ButtonWindow : BasicWindow, IDrawable
     {
-        private void DrawCaption()
+        private int mCapX;
+        private int mCapY;
+
+        private string mClearString;
+
+        protected void DrawCaption()
         {            
-            int initPositionX = (Width - Name.Length) / 2;
-            int initPositionY = Height / 2;
-            Console.SetCursorPosition(PositionX + initPositionX,PositionY + initPositionY);
+            Console.SetCursorPosition(PositionX + mCapX,PositionY + mCapY);
             Console.Write(Name);
         }
+        protected void ClearCaption()
+        {
+            Console.SetCursorPosition(PositionX + mCapX, PositionY + mCapY);
+            Console.Write(mClearString);
+        }
+
 
         public ButtonWindow(string caption, int x, int y, int w, int h) : base(caption,x,y,w,h)
         {
+            mCapX = (Width - Name.Length) / 2;
+            mCapY = Height / 2;
+            mClearString = new string(' ', Name.Length);
         }
 
         void IDrawable.Draw()
@@ -29,10 +41,6 @@ namespace OrganizerCore.View.WindowTypes
         void IDrawable.Clean()
         {
             base.Clean();
-        }
-        bool IDrawable.IsChanged()
-        {
-            return base.IsChanged();
         }
 
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)

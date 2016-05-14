@@ -32,9 +32,10 @@ namespace OrganizerCore.View.WindowTypes
             BackgroundColor = ConsoleColor.White;
             FontColor = ConsoleColor.Black;
 
-            IsHidden = false;
+            IsWindowHidden = false;
             IsInteractable = true;
         }
+
         public void AddChildWindow(BasicWindow chWindow)
         {
             Childs.Add(chWindow);
@@ -55,6 +56,13 @@ namespace OrganizerCore.View.WindowTypes
             IsWindowChanged = true;
         }
 
+        public void ShowWindow(bool showed)
+        {
+            this.IsWindowHidden = !showed;
+            foreach (var child in Childs)
+                child.IsWindowHidden = !showed;
+        }
+
         public BasicWindow Parent { get; set; }
         public List<BasicWindow> Childs { get; set; }
 
@@ -65,7 +73,7 @@ namespace OrganizerCore.View.WindowTypes
         public int Width     { get; set; }
         public int Height    { get; set; }
 
-        public bool IsHidden { get; set; }
+        public bool IsWindowHidden { get; set; }
         public bool IsWindowChanged { get; set; }
         public bool IsInteractable { get; set; }
 
@@ -127,6 +135,10 @@ namespace OrganizerCore.View.WindowTypes
             if (changed)
                 IsWindowChanged = false;
             return changed;
+        }
+        public  bool IsHidden()
+        {
+            return IsWindowHidden;
         }
 
         public virtual void OnAction(ActionEventArgs e)

@@ -10,6 +10,8 @@ namespace OrganizerCore.View.ExtraTypes
     {
         void Draw();
         void Clean();
+
         bool IsChanged();
+        bool IsHidden();
     }
 }

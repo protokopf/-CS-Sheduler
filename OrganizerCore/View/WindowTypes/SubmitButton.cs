@@ -15,6 +15,11 @@ namespace OrganizerCore.View.WindowTypes
 
         }
 
+        void IDrawable.Clean()
+        {
+            base.Clean();
+            ClearCaption();
+        }
 
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
@@ -27,8 +32,11 @@ namespace OrganizerCore.View.WindowTypes
         }
         public override void FromParentAction(ref BasicWindow activeWindow)
         {
-            Parent.Action();
             this.OutFocus();
+
+            Parent.Action();
+            Parent.ShowWindow(false);
+            Parent.WinHasChanged();
             Parent.GoToParent(ref activeWindow);
         }
     }

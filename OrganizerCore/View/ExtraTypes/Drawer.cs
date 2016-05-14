@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using OrganizerCore.View.WindowTypes;
+
 namespace OrganizerCore.View.ExtraTypes
 {
     class Drawer
@@ -15,8 +17,7 @@ namespace OrganizerCore.View.ExtraTypes
             mListOfGoals = new List<IDrawable>();
         }
 
-        // данный метод будет вызываться из рекурсивной функции, которая предоставит Drawer'у ссылки на
-        // все рисуемые объекты
+
         public void AddGoal(IDrawable dr)
         {
             mListOfGoals.Add(dr);
@@ -37,7 +38,8 @@ namespace OrganizerCore.View.ExtraTypes
             foreach(var it in changedItems)
             {
                 it.Clean();
-                it.Draw();
+                if(!it.IsHidden())
+                    it.Draw();
             }
         }
     }

@@ -53,10 +53,6 @@ namespace OrganizerCore.View.WindowTypes
                 Console.Write(' ');
             }
         }
-        bool IDrawable.IsChanged()
-        {
-            return base.IsChanged();
-        }
 
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
