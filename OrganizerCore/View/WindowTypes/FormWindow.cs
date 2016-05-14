@@ -18,6 +18,7 @@ namespace OrganizerCore.View.WindowTypes
                     e.Storage.Add(child.Name, child.ToString());
             return e;
         }
+
         private void PlaceAllWindows()
         {
 
@@ -48,7 +49,5 @@ namespace OrganizerCore.View.WindowTypes
         {
             OnAction(StoreInfoFromChild());
         }
-
-
     }
 }

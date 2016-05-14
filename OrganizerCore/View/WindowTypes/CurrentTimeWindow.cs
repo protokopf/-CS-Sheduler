@@ -38,6 +38,7 @@ namespace OrganizerCore.View.WindowTypes
 
         void IDrawable.Draw()
         {
+            base.Draw();
             mBuilder.Append(mTime.ToString());
             Console.SetCursorPosition(xPos, yPos);
             Console.Write(mBuilder.ToString());
@@ -55,6 +56,10 @@ namespace OrganizerCore.View.WindowTypes
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
 
+        }
+        public override void FromParentAction(ref BasicWindow activeWindow)
+        {
+            
         }
 
     }

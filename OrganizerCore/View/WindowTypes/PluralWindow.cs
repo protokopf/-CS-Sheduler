@@ -45,15 +45,6 @@ namespace OrganizerCore.View.WindowTypes
             if(Childs.Count != 0)
                 Childs[mCurrentWindowIndex].InFocus();
         }
-
-        void IDrawable.Draw()
-        {
-            base.Draw();
-        }
-        void IDrawable.Clean()
-        {
-            base.Clean();
-        }
  
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {

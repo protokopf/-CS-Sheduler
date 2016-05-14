@@ -15,6 +15,14 @@ namespace OrganizerCore.View.WindowTypes
             get { return mCurrentWindowIndex; }
         }
 
+        protected void RecursiveShowWindow(BasicWindow win, bool showed)
+        {
+            win.IsWindowHidden = !showed;
+            win.WinHasChanged();
+            foreach (var child in win.Childs)
+                RecursiveShowWindow(child, showed); 
+        }
+
         public string Name { get; set; }
 
         public event EventHandler<ActionEventArgs> WinEvent;
@@ -58,9 +66,10 @@ namespace OrganizerCore.View.WindowTypes
 
         public void ShowWindow(bool showed)
         {
-            this.IsWindowHidden = !showed;
-            foreach (var child in Childs)
-                child.IsWindowHidden = !showed;
+            RecursiveShowWindow(this, showed);
+            //this.IsWindowHidden = !showed;
+            //foreach (var child in Childs)
+            //    child.IsWindowHidden = !showed;
         }
 
         public BasicWindow Parent { get; set; }

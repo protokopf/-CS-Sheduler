@@ -37,8 +37,7 @@ namespace OrganizerCore.View
             sideBlock.AddChildWindow(new ButtonWindow("ADD", SizeX - 18, 14, 12, 3));
             sideBlock.AddChildWindow(new ButtonWindow("REM", SizeX - 18, 18, 12, 3));
 
-            BasicWindow timeBlock = new PluralWindow("TimeBlock",SizeX - 25,0,25,3);
-            timeBlock.AddChildWindow(new CurrentTimeWindow("Time",SizeX - 25, 0, 25, 3));
+            BasicWindow timeBlock = new CurrentTimeWindow("Time", SizeX - 25, 0, 25, 3);
 
             BasicWindow runStringBlock = new PluralWindow("RunBlock",0,SizeY - 5,SizeX,5);
             runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
