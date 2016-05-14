@@ -71,7 +71,7 @@ namespace OrganizerCore.View.WindowTypes
                     GoToParent(ref activeWindow);
                     break;
                 case ConsoleKey.Enter:
-                    Action();
+                    //Action();
                     GoToParent(ref activeWindow);
                     break;
                 case ConsoleKey.Backspace:

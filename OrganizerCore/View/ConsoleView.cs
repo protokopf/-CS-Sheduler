@@ -43,7 +43,8 @@ namespace OrganizerCore.View
             BasicWindow runStringBlock = new PluralWindow("RunBlock",0,SizeY - 5,SizeX,5);
             runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
 
-            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm"))
+            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", (int)FormWindowProp.PosX, (int)FormWindowProp.PosY,
+                (int)FormWindowProp.Width, (int)FormWindowProp.Height));
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
             mBasicWindow.AddChildWindow(runStringBlock);

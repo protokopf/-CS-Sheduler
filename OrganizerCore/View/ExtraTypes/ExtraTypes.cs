@@ -34,12 +34,12 @@ namespace OrganizerCore.View.ExtraTypes
         Height = 50,
         Width = 100
     }
-    public enum FormWindowProperties : int
+    public enum FormWindowProp : int
     {
-        PosX = 15,
-        PosY = 15,
+        PosX = 5,
+        PosY = 5,
         Width = 40,
-        Height = 40
+        Height = 35
     }
 
     public enum WindowSymbols : int
