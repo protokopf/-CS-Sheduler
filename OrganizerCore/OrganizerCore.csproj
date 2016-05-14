@@ -64,6 +64,7 @@
     <Compile Include="View\WindowTypes\ButtonWindow.cs" />
     <Compile Include="View\WindowTypes\CounterWindow.cs" />
     <Compile Include="View\WindowTypes\CurrentTimeWindow.cs" />
+    <Compile Include="View\WindowTypes\DateTimeWindow.cs" />
     <Compile Include="View\WindowTypes\FormWindow.cs" />
     <Compile Include="View\WindowTypes\InputWindow.cs" />
     <Compile Include="View\WindowTypes\RunningStringWindow.cs" />

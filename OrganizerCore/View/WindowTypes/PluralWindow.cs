@@ -63,6 +63,10 @@ namespace OrganizerCore.View.WindowTypes
         {
             switch (key.Key)
             {
+                case ConsoleKey.LeftArrow:
+                    goto case ConsoleKey.DownArrow;
+                case ConsoleKey.RightArrow:
+                    goto case ConsoleKey.UpArrow;
                 case ConsoleKey.UpArrow:
                     SlideNextWindow();
                     break;

@@ -17,19 +17,13 @@ namespace OrganizerCore.View.WindowTypes
 
         private void Increment()
         {
-            if (mValue < maxValue)
-            {
-                ++mValue;
-                WinHasChanged();
-            }
+            mValue = (mValue < maxValue) ? mValue + 1 : minValue;
+            WinHasChanged();
         }
         private void Decrement()
         {
-            if (mValue > 0)
-            {
-                --mValue;
-                WinHasChanged();
-            }
+            mValue = (mValue > minValue) ? mValue - 1 : maxValue;
+            WinHasChanged();
         }
 
         public CounterWindow(string name,int x, int y, int w, int h, int max, int min = 0) : base(name,x,y,w,h)
@@ -42,12 +36,14 @@ namespace OrganizerCore.View.WindowTypes
         void IDrawable.Draw()
         {
             base.Draw();
+            Console.SetCursorPosition(PositionX + 1, yPos);
+            Console.Write(mValue.ToString());
+            Console.BackgroundColor = BackgroundColor;
             Console.SetCursorPosition(PositionX + Width - 2, PositionY);
             Console.Write((char)WindowSymbols.ArrowUp);
             Console.SetCursorPosition(PositionX + Width - 2, PositionY + Height - 1);
             Console.Write((char)WindowSymbols.ArrowDown);
-            Console.SetCursorPosition(PositionX + 1, yPos);
-            Console.Write(mValue.ToString());
+            Console.ResetColor();
         }
         void IDrawable.Clean()
         {
@@ -74,17 +70,11 @@ namespace OrganizerCore.View.WindowTypes
                     break;
                 case ConsoleKey.Enter:
                     Action();
+                    GoToParent(ref activeWindow);
                     break;
                 case ConsoleKey.Escape:
-                    if (this.Parent != null)
-                    {
-                        foreach (var child in Childs)
-                            child.OutFocus();
-                        activeWindow = this.Parent;
-                        activeWindow.Childs[activeWindow.CurrentWindowIndex].InFocus();
-                    }
+                    GoToParent(ref activeWindow);
                     break;
-
             }
         }
         public override void FromParentAction(ref BasicWindow activeWindow)

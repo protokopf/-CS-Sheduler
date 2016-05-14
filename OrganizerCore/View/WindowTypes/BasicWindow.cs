@@ -156,7 +156,7 @@ namespace OrganizerCore.View.WindowTypes
         }
         public virtual void InFocus()
         {
-            BackgroundColor = ConsoleColor.Blue;
+            BackgroundColor = ConsoleColor.Green;
             WinHasChanged();
         }
 
