@@ -11,16 +11,14 @@ namespace OrganizerCore.View.WindowTypes
     {
         public TextWindow(string text, int x, int y) : base(text,x,y,text.Length,1)
         {
-            IsInteractable = false;
+            IsInteractable = true;
         }
 
         void IDrawable.Draw()
         {
-            for(int i = 0; i < Name.Length; ++i)
-            {
-                Console.SetCursorPosition(PositionX + i, PositionY);
-                Console.Write(Name[i]);
-            }
+            Console.SetCursorPosition(PositionX, PositionY);
+            Console.Write(Name);
+             
         }
         void IDrawable.Clean()
         {
@@ -38,6 +36,15 @@ namespace OrganizerCore.View.WindowTypes
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
             
+        }
+
+        public override void InFocus()
+        {
+            this.FontColor = ConsoleColor.Green;
+        }
+        public override void OutFocus()
+        {
+            this.FontColor = ConsoleColor.Black;
         }
     }
 }

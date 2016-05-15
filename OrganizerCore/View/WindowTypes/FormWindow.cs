@@ -49,5 +49,10 @@ namespace OrganizerCore.View.WindowTypes
         {
             OnAction(StoreInfoFromChild());
         }
+        public override void ReactMethod(object sender, ActionEventArgs e)
+        {
+            // этот метод будет вызываться вызывающей функцией / делегатом, а передаватсья сюда будут значения
+            // которыми заполняться поля
+        }
     }
 }

@@ -42,8 +42,14 @@ namespace OrganizerCore.View
             BasicWindow runStringBlock = new PluralWindow("RunBlock",0,SizeY - 5,SizeX,5);
             runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
 
-            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", (int)FormWindowProp.PosX, (int)FormWindowProp.PosY,
-                (int)FormWindowProp.Width, (int)FormWindowProp.Height));
+            //mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", (int)FormWindowProp.PosX, (int)FormWindowProp.PosY,
+                //(int)FormWindowProp.Width, (int)FormWindowProp.Height));
+
+            BasicWindow listBox = new ListBoxWindow("Joddie", 0, 0, 65, 44);
+            for (int i = 0; i < 5; ++i)
+                listBox.AddChildWindow(new ListBoxItemWindow(i.ToString()));
+
+            mBasicWindow.AddChildWindow(listBox);
             mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
             mBasicWindow.AddChildWindow(runStringBlock);

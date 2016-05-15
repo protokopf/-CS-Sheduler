@@ -27,15 +27,8 @@ namespace OrganizerCore.View.WindowTypes
 
         public event EventHandler<ActionEventArgs> WinEvent;
 
-        public BasicWindow(string name, int x, int y, int w, int h)
+        public BasicWindow()
         {
-            Name = name;
-
-            PositionX = x;
-            PositionY = y;
-            Width = w;
-            Height = h;
-
             Childs = new List<BasicWindow>();
             BackgroundColor = ConsoleColor.White;
             FontColor = ConsoleColor.Black;
@@ -43,12 +36,16 @@ namespace OrganizerCore.View.WindowTypes
             IsWindowHidden = false;
             IsInteractable = true;
         }
-
-        public void AddChildWindow(BasicWindow chWindow)
+        public BasicWindow(string name, int x, int y, int w, int h) : this()
         {
-            Childs.Add(chWindow);
-            chWindow.Parent = this;
+            Name = name;
+
+            PositionX = x;
+            PositionY = y;
+            Width = w;
+            Height = h;
         }
+
         public void GoToParent(ref BasicWindow activeWindow)
         {
             if (this.Parent != null)
@@ -67,9 +64,6 @@ namespace OrganizerCore.View.WindowTypes
         public void ShowWindow(bool showed)
         {
             RecursiveShowWindow(this, showed);
-            //this.IsWindowHidden = !showed;
-            //foreach (var child in Childs)
-            //    child.IsWindowHidden = !showed;
         }
 
         public BasicWindow Parent { get; set; }
@@ -179,6 +173,12 @@ namespace OrganizerCore.View.WindowTypes
         {
             BackgroundColor = ConsoleColor.Green;
             WinHasChanged();
+        }
+
+        public virtual void AddChildWindow(BasicWindow chWindow)
+        {
+            Childs.Add(chWindow);
+            chWindow.Parent = this;
         }
 
         public abstract void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow);

@@ -30,7 +30,8 @@ namespace OrganizerCore.View.ExtraTypes
         public void InitialDrawing()
         {
             foreach (var goal in mListOfGoals)
-                goal.Draw();
+                if(!goal.IsHidden())
+                    goal.Draw();
         }
         public void Draw()
         {

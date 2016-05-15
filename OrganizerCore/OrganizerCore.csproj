@@ -68,6 +68,8 @@
     <Compile Include="View\WindowTypes\DateTimeWindow.cs" />
     <Compile Include="View\WindowTypes\FormWindow.cs" />
     <Compile Include="View\WindowTypes\InputWindow.cs" />
+    <Compile Include="View\WindowTypes\ListBoxItemWindow.cs" />
+    <Compile Include="View\WindowTypes\ListBoxWindow.cs" />
     <Compile Include="View\WindowTypes\RunningStringWindow.cs" />
     <Compile Include="View\WindowTypes\PluralWindow.cs" />
     <Compile Include="View\WindowTypes\SubmitButton.cs" />
