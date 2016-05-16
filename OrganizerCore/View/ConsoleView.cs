@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+
 using OrganizerCore.View.WindowTypes;
 using OrganizerCore.View.ExtraTypes;
 
@@ -55,6 +57,20 @@ namespace OrganizerCore.View
             return ConsoleCommands.Invoke(command);
         }
 
+        private void ShowEventForm(object sender, ActionEventArgs e)
+        {
+            BasicWindow form = mWindowHandler["BasicWindow.EventForm"];
+            form.ReactMethod(this, e);
+            form.ShowWindow(true);
+            mActiveWindow = form;
+        }
+        private void PostEventForm(object sender, ActionEventArgs e)
+        {
+            ICommand addCommand = new AddEventCommand(e);
+            OnCommand(addCommand);
+            UpdateEventList();
+        }
+
         private void UpdateEventList()
         {
             BasicWindow listBox = mWindowHandler["BasicWindow.ListBoxWindow"];
@@ -81,7 +97,6 @@ namespace OrganizerCore.View
             mWindowHandler = new WindowHandler();
 
             mVisibleEvents = new Dictionary<string,string>();
-
             DesignConsole();
         }
 
@@ -103,24 +118,12 @@ namespace OrganizerCore.View
             }
         }
 
-        private void ShowEventForm(object sender, ActionEventArgs e)
+       
+        public void AddMessageInQueue(string message)
         {
-            BasicWindow form = mWindowHandler["BasicWindow.EventForm"];
-            form.ReactMethod(this, e);
-            form.ShowWindow(true);
-            mActiveWindow = form;
+            ActionEventArgs e = new ActionEventArgs();
+            e.Storage.Add("Message",message);
+            mWindowHandler["MessageBlock.RunString"].ReactMethod(this, e);
         }
-        private void PostEventForm(object sender, ActionEventArgs e)
-        {
-            ICommand addCommand = new AddEventCommand(e);
-            OnCommand(addCommand);
-            UpdateEventList();
-        }
-
-        private void CheckPresenceMessages(object sedner, ActionEventArgs e)
-        {
-
-        }
-
     }
 }

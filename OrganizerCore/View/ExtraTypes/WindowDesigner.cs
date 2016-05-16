@@ -84,7 +84,7 @@ namespace OrganizerCore.View.ExtraTypes
         }
         private BasicWindow CreateMessageBlock(string name, int x, int y, int w, int h)
         {
-            BasicWindow runStringBlock = new PluralWindow("RunWindow", x, y, w, h);
+            BasicWindow runStringBlock = new PluralWindow(name, x, y, w, h);
             runStringBlock.AddChildWindow(new RunningStringWindow("RunString", x, y, w, h));
 
             return runStringBlock;

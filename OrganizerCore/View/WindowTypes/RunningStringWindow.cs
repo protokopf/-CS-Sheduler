@@ -11,6 +11,8 @@ namespace OrganizerCore.View.WindowTypes
     class RunningStringWindow : BasicWindow, IDrawable
     {
         private Timer mTimer;
+        private Queue<string> mMessagesQueue;
+
         private const string mDefaultString = "There is no messages";
         private string Label { get; set; }
 
@@ -41,6 +43,7 @@ namespace OrganizerCore.View.WindowTypes
         public RunningStringWindow(string name,int x, int y, int w, int h) : base(name,x, y, w, h)
         {
             Label = mDefaultString;
+            mMessagesQueue = new Queue<string>();
 
             mFirst = Width;
             mLast = Width + Label.Length - 1;
@@ -77,12 +80,20 @@ namespace OrganizerCore.View.WindowTypes
         public override void FromParentAction(ref BasicWindow activeWindow)
         {
             if (Label != mDefaultString)
-                Label = mDefaultString;
-            this.IsWindowChanged = true;
+            {
+                if (mMessagesQueue.Count > 0)
+                {
+                    Label = mMessagesQueue.Peek();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                    Label = mDefaultString;
+                this.IsWindowChanged = true;
+            }
         }
         public override void ReactMethod(object sender, ActionEventArgs e)
         {
-            Label = e.Storage["Message"];
+            mMessagesQueue.Enqueue(e.Storage["Message"]);
             this.IsWindowChanged = true;
         }
     }

@@ -22,6 +22,8 @@ namespace OrganizerCore.Model
 
         private List<MyTask> mTaskList;
 
+        private StringBuilder mMessagesBuilder;
+
         private AbstractConvertor mStorageConvertor;
         private IEqualityComparer<Package> mPackageEquater;
 
@@ -29,8 +31,10 @@ namespace OrganizerCore.Model
         {
             mPackageEquater = packageEquater;
             mCoreStorage = storageRef;
+
             mTaskList = new List<MyTask>();
             mStorageConvertor = new Convertor();
+            mMessagesBuilder = new StringBuilder();
 
             mCoreStorage.OpenBase();
 
@@ -69,6 +73,20 @@ namespace OrganizerCore.Model
             foreach (var task in mTaskList)
                 tasks.Add(task.ID,task.ToString());
             return tasks;
+        }
+        public string CheckEventAdvent()
+        {
+            mMessagesBuilder.Clear();
+            foreach(var ev in mTaskList)
+            {
+                if(ev.IsTime())
+                {
+                    mMessagesBuilder.Append(ev.Name).Append(" - ").Append(ev.Description);
+                    mTaskList.Remove(ev);
+                    return mMessagesBuilder.ToString();
+                }
+            }
+            return null;
         }
 
         public void    AddTask(Package package)
