@@ -58,8 +58,9 @@
     <Compile Include="View\ConsoleView.cs" />
     <Compile Include="View\ExtraTypes\IConnectable.cs" />
     <Compile Include="View\ExtraTypes\IDrawable.cs" />
-    <Compile Include="View\ExtraTypes\Drawer.cs" />
+    <Compile Include="View\ExtraTypes\WindowDrawer.cs" />
     <Compile Include="View\ExtraTypes\WindowDesigner.cs" />
+    <Compile Include="View\ExtraTypes\WindowHandler.cs" />
     <Compile Include="View\WindowTypes\BasicWindow.cs" />
     <Compile Include="View\ExtraTypes\ExtraTypes.cs" />
     <Compile Include="View\WindowTypes\ButtonWindow.cs" />

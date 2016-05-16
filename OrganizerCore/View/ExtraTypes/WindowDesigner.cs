@@ -37,7 +37,13 @@ namespace OrganizerCore.View.ExtraTypes
             switch(windowClass)
             {
                 case "EventForm":
-                    return CreateEventForm("EventForm", x, y, w, h);
+                    return CreateEventForm(windowClass, x, y, w, h);
+                case "SideBlock":
+                    return CreateSideBlock(windowClass, x, y, w, h);
+                case "MessageBlock":
+                    return CreateMessageBlock(windowClass, x, y, w, h);
+
+
             }
             return null;
         }
@@ -51,7 +57,7 @@ namespace OrganizerCore.View.ExtraTypes
             inputWidth = GetOptimalWidth(eventForm, 2);
             eventForm.AddChildWindow(new InputWindow("Name", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
 
-            eventForm.AddChildWindow(new TextWindow("DESCRIPTION", GetCenterX(eventForm, 11), GetCenterY(eventForm, 1, ref step)));
+            eventForm.AddChildWindow(new TextWindow("DESCRIPT", GetCenterX(eventForm, 11), GetCenterY(eventForm, 1, ref step)));
             eventForm.AddChildWindow(new InputWindow("Description", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
 
             eventForm.AddChildWindow(new TextWindow("Begin Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
@@ -64,5 +70,26 @@ namespace OrganizerCore.View.ExtraTypes
 
 
         }
+        private BasicWindow CreateSideBlock(string name, int x, int y, int w, int h)
+        {
+            BasicWindow sideBlock = new PluralWindow(name, x, y, w, h);
+
+            int centerX = GetCenterX(sideBlock, 12);
+            int step = 2;
+
+            sideBlock.AddChildWindow(new ButtonWindow("ADD", centerX, GetCenterY(sideBlock, 3, ref step), 12, 3));
+            sideBlock.AddChildWindow(new ButtonWindow("REM", centerX, GetCenterY(sideBlock, 3, ref step), 12, 3));
+
+            return sideBlock;
+        }
+        private BasicWindow CreateMessageBlock(string name, int x, int y, int w, int h)
+        {
+            BasicWindow runStringBlock = new PluralWindow("RunWindow", x, y, w, h);
+            runStringBlock.AddChildWindow(new RunningStringWindow("RunString", x, y, w, h));
+
+            return runStringBlock;
+        }
+
+
     }
 }

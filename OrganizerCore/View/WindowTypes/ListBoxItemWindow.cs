@@ -46,7 +46,7 @@ namespace OrganizerCore.View.WindowTypes
         void IDrawable.Clean()
         {
             //base.Clean();
-            for(int i = 1; i < Name.Length; ++i)
+            for(int i = 1; i < Width - 1; ++i)
             {
                 Console.SetCursorPosition(PositionX + i, PositionY + 1);
                 Console.Write(' ');

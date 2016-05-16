@@ -104,9 +104,8 @@ namespace OrganizerCore.View.WindowTypes
             chWindow.PositionY = PositionY + 1 + nextItemYPosition;
             chWindow.Width = Width - 2;
 
-            if (Childs.Count >= mItemCapacity)
+            if (Childs.Count > mItemCapacity)
                 chWindow.ShowWindow(false);
-
             nextItemYPosition += chWindow.Height;
         }
     }

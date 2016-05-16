@@ -11,7 +11,7 @@ namespace OrganizerCore.View.WindowTypes
     {
         public TextWindow(string text, int x, int y) : base(text,x,y,text.Length,1)
         {
-            IsInteractable = true;
+            IsInteractable = false;
         }
 
         void IDrawable.Draw()

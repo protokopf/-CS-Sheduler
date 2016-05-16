@@ -10,18 +10,11 @@ namespace OrganizerCore.View
 {
     class ConsoleView
     {
-        private BasicWindow mBasicWindow = null;
         private BasicWindow mActiveWindow = null;
 
-        private Drawer mWindowDrawer;
+        private IWindowDrawer mWindowDrawer;
         private IWindowDesigner mWindowDesigner;
-
-        private void RecursiveAddingToDrawerList(BasicWindow window)
-        {
-            mWindowDrawer.AddGoal(window);
-            foreach (var child in window.Childs)
-                RecursiveAddingToDrawerList(child);
-        }
+        private IWindowHandler mWindowHandler;
 
         private void DesignConsole()
         {
@@ -31,31 +24,25 @@ namespace OrganizerCore.View
             Console.WindowWidth = SizeX + 1;
             Console.Title = "Sheduler";
 
-            mBasicWindow = new PluralWindow("Main",0,0,SizeX,SizeY);
+            BasicWindow mBasicWindow = new PluralWindow("BasicWindow", 0, 0, SizeX, SizeY);
 
-            BasicWindow sideBlock = new PluralWindow("Side",SizeX - 25,11,25,34);
-            sideBlock.AddChildWindow(new ButtonWindow("ADD", SizeX - 18, 14, 12, 3));
-            sideBlock.AddChildWindow(new ButtonWindow("REM", SizeX - 18, 18, 12, 3));
+            BasicWindow timeBlock = new CurrentTimeWindow("TimeWindow", SizeX - 25, 0, 25, 3);
 
-            BasicWindow timeBlock = new CurrentTimeWindow("Time", SizeX - 25, 0, 25, 3);
+            BasicWindow listTitle = new TextWindow("EVENT LIST", 32, 1);
+            BasicWindow listBox = new ListBoxWindow("ListBoxWindow", 1, 2, 73, 17);
 
-            BasicWindow runStringBlock = new PluralWindow("RunBlock",0,SizeY - 5,SizeX,5);
-            runStringBlock.AddChildWindow(new RunningStringWindow("RunStr",0, SizeY - 5, SizeX, 5));
+            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("SideBlock", SizeX - 25, 11, 25, 34));
+            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", 5, 5, 40, 35));
+            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("MessageBlock", 0, SizeY - 5, SizeX, 5));
 
-            //mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", (int)FormWindowProp.PosX, (int)FormWindowProp.PosY,
-                //(int)FormWindowProp.Width, (int)FormWindowProp.Height));
-
-            BasicWindow listBox = new ListBoxWindow("Joddie", 0, 0, 65, 44);
-            for (int i = 0; i < 5; ++i)
-                listBox.AddChildWindow(new ListBoxItemWindow(i.ToString()));
-
+            mBasicWindow.AddChildWindow(listTitle);
             mBasicWindow.AddChildWindow(listBox);
-            mBasicWindow.AddChildWindow(sideBlock);
             mBasicWindow.AddChildWindow(timeBlock);
-            mBasicWindow.AddChildWindow(runStringBlock);
 
             mActiveWindow = mBasicWindow;
-            RecursiveAddingToDrawerList(mActiveWindow);
+
+            mWindowDrawer.CatchAllChild(mActiveWindow);
+            mWindowHandler.CatchAllChild(mActiveWindow);
         }
 
         public interface ConsoleViewCommunicator
@@ -71,15 +58,16 @@ namespace OrganizerCore.View
             SizeX = x;
             SizeY = y;
 
-            mWindowDrawer = new Drawer();
+            mWindowDrawer = new WindowDrawer();
             mWindowDesigner = new ShedulerWindowDesigner();
+            mWindowHandler = new WindowHandler();
 
             DesignConsole();
         }
 
         public void MainLoop()
         {
-            mWindowDrawer.InitialDrawing();
+            mWindowDrawer.InitialDraw();
             while(true)
             {
                 if (Console.KeyAvailable)

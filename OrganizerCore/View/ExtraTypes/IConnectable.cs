@@ -10,7 +10,6 @@ namespace OrganizerCore.View.ExtraTypes
     {
         void OnAction(ActionEventArgs e);
         void Action();
-
         void ReactMethod(object sender, ActionEventArgs e);
     }
 }
