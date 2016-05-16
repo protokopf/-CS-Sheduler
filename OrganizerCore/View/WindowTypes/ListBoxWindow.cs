@@ -18,8 +18,11 @@ namespace OrganizerCore.View.WindowTypes
 
         private void MoveListItem()
         {
-            foreach(var child in Childs)
+            foreach (var child in Childs)
+            {
                 child.ShowWindow(false);
+                child.IsWindowChanged = false;
+            }
             BasicWindow childW = null;
             for(int i = 0, index = mCurrentIndex, y = 1; i < mItemCapacity; ++i,++index, y+=3)
             {
@@ -105,7 +108,10 @@ namespace OrganizerCore.View.WindowTypes
             chWindow.Width = Width - 2;
 
             if (Childs.Count > mItemCapacity)
+            {
                 chWindow.ShowWindow(false);
+                chWindow.IsWindowChanged = false;
+            }
             nextItemYPosition += chWindow.Height;
         }
     }

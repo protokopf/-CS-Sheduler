@@ -55,9 +55,10 @@ namespace OrganizerCore.View.ExtraTypes
             var changedItems = (from chI in mListOfGoals where (chI.IsChanged() == true) select chI);
             foreach(var it in changedItems)
             {
+                it.Clean();
                 if (!it.IsHidden())
                 {
-                    it.Clean();
+                    
                     it.Draw();
                 }
             }

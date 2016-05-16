@@ -24,23 +24,16 @@ namespace OrganizerCore.View
             Console.WindowWidth = SizeX + 1;
             Console.Title = "Sheduler";
 
-            BasicWindow mBasicWindow = new PluralWindow("BasicWindow", 0, 0, SizeX, SizeY);
+            mActiveWindow = new PluralWindow("BasicWindow", 0, 0, SizeX, SizeY);
 
-            BasicWindow timeBlock = new CurrentTimeWindow("TimeWindow", SizeX - 25, 0, 25, 3);
+            mActiveWindow.AddChildWindow(new TextWindow("EVENT LIST", 32, 1));
+            mActiveWindow.AddChildWindow(new ListBoxWindow("ListBoxWindow", 1, 2, 73, 17));
+            mActiveWindow.AddChildWindow(new CurrentTimeWindow("TimeWindow", SizeX - 25, 0, 25, 3));
+            mActiveWindow.AddChildWindow(mWindowDesigner.CreateWindow("SideBlock", SizeX - 25, 11, 25, 34));
+            mActiveWindow.AddChildWindow(mWindowDesigner.CreateWindow("MessageBlock", 0, SizeY - 5, SizeX, 5));
 
-            BasicWindow listTitle = new TextWindow("EVENT LIST", 32, 1);
-            BasicWindow listBox = new ListBoxWindow("ListBoxWindow", 1, 2, 73, 17);
-
-            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("SideBlock", SizeX - 25, 11, 25, 34));
-            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", 5, 5, 40, 35));
-            mBasicWindow.AddChildWindow(mWindowDesigner.CreateWindow("MessageBlock", 0, SizeY - 5, SizeX, 5));
-
-            mBasicWindow.AddChildWindow(listTitle);
-            mBasicWindow.AddChildWindow(listBox);
-            mBasicWindow.AddChildWindow(timeBlock);
-
-            mActiveWindow = mBasicWindow;
-
+            mActiveWindow.AddChildWindow(mWindowDesigner.CreateWindow("EventForm", 15, 20, 40, 20));
+            
             mWindowDrawer.CatchAllChild(mActiveWindow);
             mWindowHandler.CatchAllChild(mActiveWindow);
         }

@@ -57,14 +57,14 @@ namespace OrganizerCore.View.ExtraTypes
             inputWidth = GetOptimalWidth(eventForm, 2);
             eventForm.AddChildWindow(new InputWindow("Name", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
 
-            eventForm.AddChildWindow(new TextWindow("DESCRIPT", GetCenterX(eventForm, 11), GetCenterY(eventForm, 1, ref step)));
+            eventForm.AddChildWindow(new TextWindow("DESCRIPTION", GetCenterX(eventForm, 11), GetCenterY(eventForm, 1, ref step)));
             eventForm.AddChildWindow(new InputWindow("Description", GetCenterX(eventForm, inputWidth), GetCenterY(eventForm, 3, ref step), inputWidth, 3));
 
-            eventForm.AddChildWindow(new TextWindow("Begin Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
-            eventForm.AddChildWindow(new DateTimeWindow("BeginDate", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
+            eventForm.AddChildWindow(new TextWindow("DATE", GetCenterX(eventForm, 4), GetCenterY(eventForm, 1, ref step)));
+            eventForm.AddChildWindow(new DateTimeWindow("Date", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
 
-            eventForm.AddChildWindow(new TextWindow("End Date", GetCenterX(eventForm, 10), GetCenterY(eventForm, 1, ref step)));
-            eventForm.AddChildWindow(new DateTimeWindow("EndDate", GetCenterX(eventForm, 30), GetCenterY(eventForm, 6, ref step)));
+            eventForm.ShowWindow(false);
+            eventForm.IsWindowChanged = false;
 
             return eventForm;
 

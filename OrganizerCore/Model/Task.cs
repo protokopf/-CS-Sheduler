@@ -37,18 +37,11 @@ namespace OrganizerCore.Model
             get { return mId; }
         }
 
-        protected   DateTime mBeginTime;
-        public      DateTime BeginTime
+        protected   DateTime mDate;
+        public      DateTime Date
         {
-            get { return mBeginTime; }
-            set { mBeginTime = value; }
-        }
-
-        protected   DateTime mEndTime;
-        public      DateTime EndTime
-        {
-            get { return mEndTime; }
-            set { mEndTime = value; }
+            get { return mDate; }
+            set { mDate = value; }
         }
 
         private     string mName;
@@ -72,12 +65,12 @@ namespace OrganizerCore.Model
         public bool IsTime()
         {
             var currTime = DateTime.Now;
-            return (currTime >= BeginTime)&&(currTime < EndTime);
+            return currTime >= Date;
         }
 
         public override string ToString()
         {
-            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n",ID, Name, Description, BeginTime, EndTime);
+            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n", ID, Name, Description, Date);
         }
         public override bool Equals(object obj)
         {
