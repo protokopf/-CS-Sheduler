@@ -40,13 +40,32 @@ namespace OrganizerCore.View.WindowTypes
             --mLast;
         }
 
+        private void SetDefaultMessage()
+        {
+            Label = mDefaultString;
+            this.FontColor = ConsoleColor.Black;
+
+            mFirst = Width;
+            mLast = Width + Label.Length - 1;
+            mInnerIndex = 0;
+        }
+        private void PeekLastMessage()
+        {
+            Label = mMessagesQueue.Dequeue();
+            this.FontColor = ConsoleColor.Red;
+
+            mFirst = Width;
+            mLast = Width + Label.Length;
+            mInnerIndex = 0;
+        }
+
         public RunningStringWindow(string name,int x, int y, int w, int h) : base(name,x, y, w, h)
         {
             Label = mDefaultString;
             mMessagesQueue = new Queue<string>();
 
             mFirst = Width;
-            mLast = Width + Label.Length - 1;
+            mLast = Width + Label.Length;
             mInnerIndex = 0;
 
             mTimer = new Timer(100);
@@ -56,7 +75,9 @@ namespace OrganizerCore.View.WindowTypes
 
         void IDrawable.Draw()
         {
+            Console.ForegroundColor = FontColor;
             int yPos = (Height / 2) + PositionY;
+
             for(int i = mFirst, cursor = mInnerIndex; i < Width - 1 && i < mLast; ++i, ++cursor)
             {
                 Console.SetCursorPosition(PositionX + ((i==0)?1:i), yPos);
@@ -82,18 +103,17 @@ namespace OrganizerCore.View.WindowTypes
             if (Label != mDefaultString)
             {
                 if (mMessagesQueue.Count > 0)
-                {
-                    Label = mMessagesQueue.Peek();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                }
+                    PeekLastMessage();
                 else
-                    Label = mDefaultString;
+                    SetDefaultMessage();
                 this.IsWindowChanged = true;
             }
         }
         public override void ReactMethod(object sender, ActionEventArgs e)
         {
             mMessagesQueue.Enqueue(e.Storage["Message"]);
+            if (Label == mDefaultString)
+                PeekLastMessage();
             this.IsWindowChanged = true;
         }
     }

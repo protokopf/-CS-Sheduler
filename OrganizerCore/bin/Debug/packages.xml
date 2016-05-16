@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <packages>
-
+	<package>
+		<Name>Hello</Name>
+		<Description>World</Description>
+		<Date>10:10:10 10.05.2015</Date>
+	</package>
 </packages>

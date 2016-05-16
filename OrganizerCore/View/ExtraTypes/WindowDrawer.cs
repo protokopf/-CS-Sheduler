@@ -71,12 +71,15 @@ namespace OrganizerCore.View.ExtraTypes
         }
         public void Draw()
         {
-            var changedItems = (from chI in mListOfGoals where (chI.IsChanged() == true) select chI);
-            foreach(var it in changedItems)
+            //var changedItems = (from chI in mListOfGoals where (chI.IsChanged() == true) select chI);
+            foreach(var it in mListOfGoals)
             {
-                it.Clean();
-                if (!it.IsHidden())
-                    it.Draw();
+                if (it.IsChanged())
+                {
+                    it.Clean();
+                    if (!it.IsHidden())
+                        it.Draw();
+                }
             }
         }
     }

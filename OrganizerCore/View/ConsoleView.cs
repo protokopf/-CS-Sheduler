@@ -104,7 +104,7 @@ namespace OrganizerCore.View
         {
             UpdateEventList();
             BindWindowsWithMethods();
-            mWindowDrawer.InitialDraw();
+            //mWindowDrawer.InitialDraw();
             while(true)
             {
                 if (Console.KeyAvailable)
@@ -122,8 +122,9 @@ namespace OrganizerCore.View
         public void AddMessageInQueue(string message)
         {
             ActionEventArgs e = new ActionEventArgs();
-            e.Storage.Add("Message",message);
-            mWindowHandler["MessageBlock.RunString"].ReactMethod(this, e);
+            e.Storage.Add("Message", message);
+            mWindowHandler["BasicWindow.MessageBlock.RunString"].ReactMethod(this, e);
+            UpdateEventList();
         }
     }
 }

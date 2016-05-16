@@ -34,7 +34,7 @@ namespace OrganizerCore.Presenter
 
         public ConsolePresenter(ModelCore model, ConsoleView console)
         {
-            mTimer = new Timer();
+            mTimer = new Timer(1000);
 
             lpModel = model;
             lpConsole = console;
@@ -45,6 +45,7 @@ namespace OrganizerCore.Presenter
 
         public void Proceed()
         {
+            mTimer.Start();
             lpConsole.MainLoop();
         }
 
