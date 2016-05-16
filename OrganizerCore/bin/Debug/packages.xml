@@ -2,15 +2,13 @@
 <packages>
   <package>
     <ID>0</ID>
-    <BeginTime>16.04.2016 11:45:45</BeginTime>
-    <EndTime>16.04.2016 11:45:45</EndTime>
+    <Data>16.04.2016 11:45:45</Data>
     <Name>Kostya</Name>
     <Description>Desc1</Description>
   </package>
   <package>
     <ID>1</ID>
-    <BeginTime>16.04.2016 11:45:45</BeginTime>
-    <EndTime>16.04.2016 11:45:45</EndTime>
+    <Data>16.04.2016 11:45:45</Data>
     <Name>Pasha</Name>
     <Description>Desc2</Description>
   </package>

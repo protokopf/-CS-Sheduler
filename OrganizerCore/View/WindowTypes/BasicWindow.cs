@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using OrganizerCore.View.ExtraTypes;
+using OrganizerCore.View.ExtraTypes.EventArgsTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {

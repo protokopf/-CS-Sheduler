@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 using OrganizerCore.View.WindowTypes;
 using OrganizerCore.View.ExtraTypes;
 
+using OrganizerCore.Presenter.Commands;
+
 namespace OrganizerCore.View
 {
     class ConsoleView
     {
+        public event EventHandler<ICommand> ConsoleCommands;
+
+        private List<string> mVisibleEvents;
         private BasicWindow mActiveWindow = null;
 
         private IWindowDrawer mWindowDrawer;
@@ -37,10 +42,21 @@ namespace OrganizerCore.View
             mWindowDrawer.CatchAllChild(mActiveWindow);
             mWindowHandler.CatchAllChild(mActiveWindow);
         }
-
-        public interface ConsoleViewCommunicator
+        private void BindWindowsWithMethods()
         {
-            
+
+        }
+
+        private void OnCommand(ICommand command)
+        {
+            ConsoleCommands.Invoke(this, command);
+        }
+
+        private void UpdateEventList()
+        {
+            ICommand updateCommand = new UpdateListCommand(mVisibleEvents);
+            OnCommand(updateCommand);
+            mWindowHandler["BasicWindow.ListBoxWindow"].ReactMethod()
         }
 
         public int SizeX { get; set; }
@@ -55,7 +71,10 @@ namespace OrganizerCore.View
             mWindowDesigner = new ShedulerWindowDesigner();
             mWindowHandler = new WindowHandler();
 
+            mVisibleEvents = new List<string>();
+
             DesignConsole();
+            BindWindowsWithMethods();
         }
 
         public void MainLoop()

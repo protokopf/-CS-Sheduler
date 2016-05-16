@@ -59,6 +59,14 @@ namespace OrganizerCore.Model
             return null;
         }
 
+        public List<string> GetTaskList()
+        {
+            List<string> tasks = new List<string>();
+            foreach (var task in mTaskList)
+                tasks.Add(task.ToString());
+            return tasks;
+        }
+
         public void    AddTask(Package package)
         {
             if (CheckIfTaskExists(package) == null)

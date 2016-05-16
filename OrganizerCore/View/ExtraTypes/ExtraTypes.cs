@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace OrganizerCore.View.ExtraTypes
 {
-    public class ActionEventArgs : EventArgs
-    {
-        private Dictionary<string, string> mStorage = new Dictionary<string, string>();
-        public Dictionary<string, string> Storage 
-        {
-            get { return mStorage; }
-            set { mStorage = value; }
-        }
-    }
-
     public enum Border : int
     {
         LeftUpCorner    = '\x250c',
@@ -34,14 +24,6 @@ namespace OrganizerCore.View.ExtraTypes
         Height = 50,
         Width = 100
     }
-    public enum FormWindowProp : int
-    {
-        PosX = 5,
-        PosY = 5,
-        Width = 40,
-        Height = 35
-    }
-
     public enum WindowSymbols : int
     {
         ArrowUp = '\x25b2',

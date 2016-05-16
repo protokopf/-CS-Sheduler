@@ -52,10 +52,12 @@
     <Compile Include="Model\Task.cs" />
     <Compile Include="Model\TaskPackageConvertor.cs" />
     <Compile Include="Model\PackageBase\PackageBases.cs" />
+    <Compile Include="Presenter\Commands\ICommand.cs" />
     <Compile Include="Presenter\ConsolePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ConsoleView.cs" />
+    <Compile Include="View\ExtraTypes\EventArgsTypes\ActionEventArgs.cs" />
     <Compile Include="View\ExtraTypes\IConnectable.cs" />
     <Compile Include="View\ExtraTypes\IDrawable.cs" />
     <Compile Include="View\ExtraTypes\WindowDrawer.cs" />
