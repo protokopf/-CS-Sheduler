@@ -11,7 +11,12 @@ namespace OrganizerCore.View.ExtraTypes
     public interface IWindowHandler
     {
         BasicWindow this[string name] { get; }
+
+        int Capacity { get; }
+
         void CatchAllChild(BasicWindow parent);
+        //void CompleteParentWindow(BasicWindow parent);
+        //void CutParentWindow(BasicWindow parent);
     }
 
     public class WindowHandler : IWindowHandler
@@ -27,6 +32,8 @@ namespace OrganizerCore.View.ExtraTypes
             path.Remove(startIndex, parent.Name.Length + 1);
         }
 
+        public int Capacity { get { return mStorage.Count; } }
+
         public WindowHandler()
         {
             mStorage = new Dictionary<string, BasicWindow>();
@@ -39,6 +46,7 @@ namespace OrganizerCore.View.ExtraTypes
                 return mStorage[name];
             }
         }
+
         public void CatchAllChild(BasicWindow parent)
         {
             StringBuilder pathToWindow = new StringBuilder();
@@ -47,5 +55,6 @@ namespace OrganizerCore.View.ExtraTypes
             foreach(var child in parent.Childs)
                 RecursiveCatching(child, ref pathToWindow);
         }
+
     }
 }

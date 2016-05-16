@@ -47,7 +47,7 @@ namespace OrganizerCore.View
         private void BindWindowsWithMethods()
         {
             mWindowHandler["BasicWindow.SideBlock.ADD"].WinEvent += ShowEventForm;
-            mWindowHandler["BasicWindow.EventForm.SUBMIT"].WinEvent += PostEventForm;
+            mWindowHandler["BasicWindow.EventForm"].WinEvent += PostEventForm;
         }
 
         private ActionEventArgs OnCommand(ICommand command)
@@ -57,12 +57,15 @@ namespace OrganizerCore.View
 
         private void UpdateEventList()
         {
-            ICommand updateCommand = new UpdateListCommand();
-            ActionEventArgs e = OnCommand(updateCommand);
             BasicWindow listBox = mWindowHandler["BasicWindow.ListBoxWindow"];
+            ICommand updateCommand = new UpdateListCommand();
+
+            mWindowDrawer.CutParentWindow(listBox);
+       
+            ActionEventArgs e = OnCommand(updateCommand);
 
             listBox.ReactMethod(this, e);
-            mWindowDrawer.CheckParentWindow(listBox);
+            mWindowDrawer.CompleteParentWindow(listBox);
         }
 
         public int SizeX { get; set; }
@@ -90,8 +93,13 @@ namespace OrganizerCore.View
             while(true)
             {
                 if (Console.KeyAvailable)
-                    mActiveWindow.KeyReact(Console.ReadKey(true),ref mActiveWindow);
+                {
+                    mActiveWindow.KeyReact(Console.ReadKey(true), ref mActiveWindow);
+                    //Console.SetCursorPosition(2, 50);
+                    //Console.Write("Drawer: {0}, Handler: {1}", mWindowDrawer.Capacity.ToString(), mWindowHandler.Capacity.ToString());
+                }
                 mWindowDrawer.Draw();
+               
             }
         }
 
@@ -107,6 +115,11 @@ namespace OrganizerCore.View
             ICommand addCommand = new AddEventCommand(e);
             OnCommand(addCommand);
             UpdateEventList();
+        }
+
+        private void CheckPresenceMessages(object sedner, ActionEventArgs e)
+        {
+
         }
 
     }

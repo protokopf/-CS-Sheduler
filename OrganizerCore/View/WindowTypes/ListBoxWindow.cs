@@ -16,6 +16,16 @@ namespace OrganizerCore.View.WindowTypes
 
         private int mItemCapacity;
 
+        private void DeleteChilds()
+        {
+            foreach(var child in Childs)
+            {
+                child.WinHasChanged();
+            }
+            Childs.Clear();
+            mCurrentIndex = 0;
+            nextItemYPosition = 0;
+        }
         private void MoveListItem()
         {
             foreach (var child in Childs)
@@ -97,6 +107,9 @@ namespace OrganizerCore.View.WindowTypes
                 case ConsoleKey.Escape:
                     GoToParent(ref activeWindow);
                     break;
+                case ConsoleKey.Enter:
+                    FromParentAction(ref activeWindow);
+                    break;
             }
         }
 
@@ -117,7 +130,7 @@ namespace OrganizerCore.View.WindowTypes
         }
         public override void ReactMethod(object sender, ActionEventArgs e)
         {
-            Childs.Clear();
+            DeleteChilds();
             foreach (var newChild in e.Storage)
             {
                 BasicWindow b = new ListBoxItemWindow(newChild.Value, Int32.Parse(newChild.Key));

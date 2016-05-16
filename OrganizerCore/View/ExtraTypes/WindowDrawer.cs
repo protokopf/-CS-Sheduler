@@ -10,8 +10,12 @@ namespace OrganizerCore.View.ExtraTypes
 {
     interface IWindowDrawer
     {
+        int Capacity { get; }
+
         void CatchAllChild(BasicWindow parent);
-        void CheckParentWindow(BasicWindow parent);
+
+        void CompleteParentWindow(BasicWindow parent);
+        void CutParentWindow(BasicWindow parent);
 
         void AddGoal(IDrawable dr);
         void RemoveGoal(IDrawable dr);
@@ -24,6 +28,8 @@ namespace OrganizerCore.View.ExtraTypes
     {
         private List<IDrawable> mListOfGoals;
 
+        public int Capacity { get { return mListOfGoals.Count; } }
+
         public WindowDrawer()
         {
             mListOfGoals = new List<IDrawable>();
@@ -35,11 +41,17 @@ namespace OrganizerCore.View.ExtraTypes
             foreach (var child in parent.Childs)
                 CatchAllChild(child);
         }
-        public void CheckParentWindow(BasicWindow parent)
+
+        public void CompleteParentWindow(BasicWindow parent)
         {
             foreach (var child in parent.Childs)
                 if (!mListOfGoals.Contains(child))
                     mListOfGoals.Add(child);
+        }
+        public void CutParentWindow(BasicWindow parent)
+        {
+            foreach (var child in parent.Childs)
+                mListOfGoals.Remove(child);
         }
 
         public void AddGoal(IDrawable dr)
@@ -64,10 +76,7 @@ namespace OrganizerCore.View.ExtraTypes
             {
                 it.Clean();
                 if (!it.IsHidden())
-                {
-                    
                     it.Draw();
-                }
             }
         }
     }
