@@ -28,9 +28,10 @@ namespace OrganizerCore.View.WindowTypes
             WinHasChanged();
         }
 
-        public ListBoxItemWindow(string name, int h = 3)
+        public ListBoxItemWindow(string name, int index, int h = 3)
         {
             Name = name;
+            mCurrentWindowIndex = index;
             Height = h;
         }
 

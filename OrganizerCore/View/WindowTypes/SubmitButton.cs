@@ -32,12 +32,14 @@ namespace OrganizerCore.View.WindowTypes
         }
         public override void FromParentAction(ref BasicWindow activeWindow)
         {
-            this.OutFocus();
-
-            Parent.Action();
-            Parent.ShowWindow(false);
-            Parent.WinHasChanged();
-            Parent.GoToParent(ref activeWindow);
+            if (Parent.ValidateWindow())
+            {
+                this.OutFocus();
+                Parent.Action();
+                Parent.ShowWindow(false);
+                Parent.WinHasChanged();
+                Parent.GoToParent(ref activeWindow);
+            }
         }
     }
 }

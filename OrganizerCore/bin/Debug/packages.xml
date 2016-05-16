@@ -2,13 +2,13 @@
 <packages>
   <package>
     <ID>0</ID>
-    <Data>16.04.2016 11:45:45</Data>
+    <Date>16.04.2016 11:45:45</Date>
     <Name>Kostya</Name>
     <Description>Desc1</Description>
   </package>
   <package>
     <ID>1</ID>
-    <Data>16.04.2016 11:45:45</Data>
+    <Date>16.04.2016 11:45:45</Date>
     <Name>Pasha</Name>
     <Description>Desc2</Description>
   </package>

@@ -5,25 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OrganizerCore.Model;
+using OrganizerCore.View.ExtraTypes;
 
 namespace OrganizerCore.Presenter.Commands
 {
     interface ICommand
     {
-        void execute(ModelCore model);
+        ActionEventArgs Execute(ModelCore model);
     }
 
     public class UpdateListCommand : ICommand
     {
-        private List<string> mStrings;
-        public UpdateListCommand(List<string> info)
-        {
-            mStrings = info;
-        }
+        private Dictionary<int, string> mStrings;
 
-        void execute(ModelCore model)
+        public ActionEventArgs Execute(ModelCore model)
         {
             mStrings = model.GetTaskList();
+            ActionEventArgs e = new ActionEventArgs();
+            foreach (var pair in mStrings)
+                e.Storage.Add(pair.Key.ToString(), pair.Value);
+            return e;
+        }
+    }
+    public class AddEventCommand : ICommand
+    {
+        ActionEventArgs arguments;
+
+        public AddEventCommand(ActionEventArgs e)
+        {
+            arguments = e;
+        }
+
+        public ActionEventArgs Execute(ModelCore model)
+        {
+            model.AddTask(arguments.Storage);
+            return null;
         }
     }
 }

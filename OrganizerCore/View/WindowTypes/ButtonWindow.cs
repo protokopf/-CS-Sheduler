@@ -38,23 +38,14 @@ namespace OrganizerCore.View.WindowTypes
             base.Draw();
             DrawCaption();
         }
-        void IDrawable.Clean()
-        {
-            base.Clean();
-        }
 
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
-            switch (key.Key)
-            {
-                case ConsoleKey.Escape:
-                    GoToParent(ref activeWindow);
-                    break;
-            }
         }
         public override void FromParentAction(ref BasicWindow activeWindow)
         {
-           
+            this.OutFocus();
+            Action();
         }
     }
 }

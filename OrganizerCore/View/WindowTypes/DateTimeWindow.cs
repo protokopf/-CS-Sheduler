@@ -15,10 +15,14 @@ namespace OrganizerCore.View.WindowTypes
 
         private string TryParseDateTime()
         {
-            mBuilder.Append(Childs[0] + "." + Childs[1] + "." + Childs[2] + " ");
-            mBuilder.Append(Childs[3] + ":" + Childs[3] + ":" + Childs[4]);
+            mBuilder.Clear();
+            mBuilder.Append(Childs[1] + "." + Childs[3] + "." + Childs[5] + " ");
+            mBuilder.Append(Childs[7] + ":" + Childs[9] + ":" + Childs[11]);
             return (DateTime.TryParse(mBuilder.ToString(),out mDateTime)) ? mDateTime.ToString() : null;
         }
+
+       
+
 
         public DateTimeWindow(string name, int x, int y, int w = 30, int h = 6) : base(name,x,y,w,h)
         {
@@ -45,7 +49,11 @@ namespace OrganizerCore.View.WindowTypes
 
         public override string ToString()
         {
-            return TryParseDateTime();
+            return mDateTime.ToString();
+        }
+        public override bool ValidateWindow()
+        {
+            return (TryParseDateTime() != null);
         }
     }
 }

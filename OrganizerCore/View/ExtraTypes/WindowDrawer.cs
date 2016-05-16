@@ -11,6 +11,7 @@ namespace OrganizerCore.View.ExtraTypes
     interface IWindowDrawer
     {
         void CatchAllChild(BasicWindow parent);
+        void CheckParentWindow(BasicWindow parent);
 
         void AddGoal(IDrawable dr);
         void RemoveGoal(IDrawable dr);
@@ -33,6 +34,12 @@ namespace OrganizerCore.View.ExtraTypes
             mListOfGoals.Add(parent);
             foreach (var child in parent.Childs)
                 CatchAllChild(child);
+        }
+        public void CheckParentWindow(BasicWindow parent)
+        {
+            foreach (var child in parent.Childs)
+                if (!mListOfGoals.Contains(child))
+                    mListOfGoals.Add(child);
         }
 
         public void AddGoal(IDrawable dr)

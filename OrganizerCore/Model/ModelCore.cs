@@ -31,6 +31,10 @@ namespace OrganizerCore.Model
             mCoreStorage = storageRef;
             mTaskList = new List<MyTask>();
             mStorageConvertor = new Convertor();
+
+            mCoreStorage.OpenBase();
+
+            LoadAllTasks();
         }
 
         public void SaveAllTasks()
@@ -59,11 +63,11 @@ namespace OrganizerCore.Model
             return null;
         }
 
-        public List<string> GetTaskList()
+        public Dictionary<int,string> GetTaskList()
         {
-            List<string> tasks = new List<string>();
+            Dictionary<int, string> tasks = new Dictionary<int, string>();
             foreach (var task in mTaskList)
-                tasks.Add(task.ToString());
+                tasks.Add(task.ID,task.ToString());
             return tasks;
         }
 

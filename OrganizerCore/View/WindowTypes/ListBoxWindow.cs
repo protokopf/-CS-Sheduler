@@ -118,8 +118,13 @@ namespace OrganizerCore.View.WindowTypes
         public override void ReactMethod(object sender, ActionEventArgs e)
         {
             Childs.Clear();
-            foreach(var newChild in e.Storage)
-                AddChildWindow(new ListBoxItemWindow(newChild.Value));
+            foreach (var newChild in e.Storage)
+            {
+                BasicWindow b = new ListBoxItemWindow(newChild.Value, Int32.Parse(newChild.Key));
+                b.WinHasChanged();
+                AddChildWindow(b);
+            }
+            this.WinHasChanged();
         }
     }
 }

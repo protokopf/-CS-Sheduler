@@ -85,6 +85,10 @@ namespace OrganizerCore.View.WindowTypes
             }
         }
 
+        public override bool ValidateWindow()
+        {
+            return (mBuilder.Length != 0);
+        }
         public override string ToString()
         {
             return mBuilder.ToString();

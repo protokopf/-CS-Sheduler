@@ -70,7 +70,7 @@ namespace OrganizerCore.Model
 
         public override string ToString()
         {
-            return String.Format("{0}\n{1}\n{2}\n{3}\n{4}\n", ID, Name, Description, Date);
+            return String.Format("{0} - {1} ({2})", Name, Description, Date.ToString());
         }
         public override bool Equals(object obj)
         {

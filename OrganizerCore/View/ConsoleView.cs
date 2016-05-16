@@ -12,9 +12,11 @@ namespace OrganizerCore.View
 {
     class ConsoleView
     {
-        public event EventHandler<ICommand> ConsoleCommands;
+        public delegate RetType CommandHandler<Arg,RetType> (Arg argument);
 
-        private List<string> mVisibleEvents;
+        public event CommandHandler<ICommand,ActionEventArgs> ConsoleCommands;
+
+        private Dictionary<string,string> mVisibleEvents;
         private BasicWindow mActiveWindow = null;
 
         private IWindowDrawer mWindowDrawer;
@@ -44,24 +46,23 @@ namespace OrganizerCore.View
         }
         private void BindWindowsWithMethods()
         {
-
+            mWindowHandler["BasicWindow.SideBlock.ADD"].WinEvent += ShowEventForm;
+            mWindowHandler["BasicWindow.EventForm.SUBMIT"].WinEvent += PostEventForm;
         }
 
-        private void OnCommand(ICommand command)
+        private ActionEventArgs OnCommand(ICommand command)
         {
-            ConsoleCommands.Invoke(this, command);
+            return ConsoleCommands.Invoke(command);
         }
 
         private void UpdateEventList()
         {
-            ICommand updateCommand = new UpdateListCommand(mVisibleEvents);
-            OnCommand(updateCommand);
+            ICommand updateCommand = new UpdateListCommand();
+            ActionEventArgs e = OnCommand(updateCommand);
+            BasicWindow listBox = mWindowHandler["BasicWindow.ListBoxWindow"];
 
-            ActionEventArgs e = new ActionEventArgs();
-            int index = 0;
-            e.Storage = mVisibleEvents.ToDictionary<string,string>((s) => { return null; });
-
-            mWindowHandler["BasicWindow.ListBoxWindow"].ReactMethod(this, e);
+            listBox.ReactMethod(this, e);
+            mWindowDrawer.CheckParentWindow(listBox);
         }
 
         public int SizeX { get; set; }
@@ -76,14 +77,15 @@ namespace OrganizerCore.View
             mWindowDesigner = new ShedulerWindowDesigner();
             mWindowHandler = new WindowHandler();
 
-            mVisibleEvents = new List<string>();
+            mVisibleEvents = new Dictionary<string,string>();
 
             DesignConsole();
-            BindWindowsWithMethods();
         }
 
         public void MainLoop()
         {
+            UpdateEventList();
+            BindWindowsWithMethods();
             mWindowDrawer.InitialDraw();
             while(true)
             {
@@ -91,6 +93,20 @@ namespace OrganizerCore.View
                     mActiveWindow.KeyReact(Console.ReadKey(true),ref mActiveWindow);
                 mWindowDrawer.Draw();
             }
+        }
+
+        private void ShowEventForm(object sender, ActionEventArgs e)
+        {
+            BasicWindow form = mWindowHandler["BasicWindow.EventForm"];
+            form.ReactMethod(this, e);
+            form.ShowWindow(true);
+            mActiveWindow = form;
+        }
+        private void PostEventForm(object sender, ActionEventArgs e)
+        {
+            ICommand addCommand = new AddEventCommand(e);
+            OnCommand(addCommand);
+            UpdateEventList();
         }
 
     }

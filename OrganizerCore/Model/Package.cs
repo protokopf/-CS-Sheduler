@@ -14,9 +14,14 @@ namespace OrganizerCore.Model
         {
             get { return mNamesAndValues; }
         }
+
         public  Package()
         {
             mNamesAndValues = new Dictionary<string, string>();
+        }
+        public  Package(Dictionary<string,string> dict)
+        {
+            mNamesAndValues = dict;
         }
 
         public override bool Equals(object obj)
@@ -29,6 +34,10 @@ namespace OrganizerCore.Model
                 if (chain.Value != anotherPackage.Dictionary[chain.Key])
                     return false;
             return equality;
+        }
+        public static implicit operator Package(Dictionary<string, string> dict)
+        {
+            return new Package(dict);
         }
     }
 }

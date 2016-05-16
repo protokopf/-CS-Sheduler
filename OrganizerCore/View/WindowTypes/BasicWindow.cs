@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OrganizerCore.View.ExtraTypes;
-using OrganizerCore.View.ExtraTypes.EventArgsTypes;
 
 namespace OrganizerCore.View.WindowTypes
 {
@@ -62,6 +61,8 @@ namespace OrganizerCore.View.WindowTypes
         {
             IsWindowChanged = true;
         }
+        
+
 
         public void ShowWindow(bool showed)
         {
@@ -154,6 +155,10 @@ namespace OrganizerCore.View.WindowTypes
         public virtual void Action()
         {
             OnAction(null);
+        }
+        public virtual bool ValidateWindow()
+        {
+            return true;
         }
 
         public virtual void FromParentAction(ref BasicWindow activeWindow)

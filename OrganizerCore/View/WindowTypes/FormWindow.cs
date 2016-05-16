@@ -28,6 +28,8 @@ namespace OrganizerCore.View.WindowTypes
         {
             AddChildWindow(new SubmitButton("SUBMIT", PositionX + (Width - 10) / 2, PositionY + Height - 4, 10, 3));
         }
+
+
         
         public override void KeyReact(ConsoleKeyInfo key, ref BasicWindow activeWindow)
         {
@@ -51,8 +53,18 @@ namespace OrganizerCore.View.WindowTypes
         }
         public override void ReactMethod(object sender, ActionEventArgs e)
         {
-            // этот метод будет вызываться вызывающей функцией / делегатом, а передаватсья сюда будут значения
-            // которыми заполняться поля
+            if(e != null)
+            {
+
+            }
+        }
+
+        public override bool ValidateWindow()
+        {
+            foreach (var child in Childs)
+                if (child.ValidateWindow() == false)
+                    return false;
+            return true;
         }
     }
 }
