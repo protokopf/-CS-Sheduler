@@ -16,6 +16,9 @@ namespace OrganizerCore.View
     {
         public delegate RetType CommandHandler<Arg,RetType> (Arg argument);
 
+        private bool mListHasChanged = false;
+        private ActionEventArgs mListEvent;
+
         public event CommandHandler<ICommand,ActionEventArgs> ConsoleCommands;
 
         private Dictionary<string,string> mVisibleEvents;
@@ -68,7 +71,7 @@ namespace OrganizerCore.View
         {
             ICommand addCommand = new AddEventCommand(e);
             OnCommand(addCommand);
-            UpdateEventList();
+            mListHasChanged = true;
         }
 
         private void UpdateEventList()
@@ -111,19 +114,33 @@ namespace OrganizerCore.View
                 {
                     mActiveWindow.KeyReact(Console.ReadKey(true), ref mActiveWindow);
                     //Console.SetCursorPosition(2, 50);
-                    //Console.Write("Drawer: {0}, Handler: {1}", mWindowDrawer.Capacity.ToString(), mWindowHandler.Capacity.ToString());
+                    //Console.Write("Drawer: {0}, Handler: {1}",
+                    //mWindowDrawer.Capacity.ToString(), mWindowHandler.Capacity.ToString());
                 }
+                SafeAddMessage();
                 mWindowDrawer.Draw();
             }
         }
 
-       
         public void AddMessageInQueue(string message)
         {
-            ActionEventArgs e = new ActionEventArgs();
-            e.Storage.Add("Message", message);
-            mWindowHandler["BasicWindow.MessageBlock.RunString"].ReactMethod(this, e);
-            UpdateEventList();
+            mListEvent = new ActionEventArgs();
+            mListEvent.Storage.Add("Message", message);
+            mListHasChanged = true;
+        }
+
+        private void SafeAddMessage()
+        {
+            if(mListHasChanged)
+            {
+                mListHasChanged = false;
+                if (mListEvent != null)
+                {
+                    mWindowHandler["BasicWindow.MessageBlock.RunString"].ReactMethod(this, mListEvent);
+                    mListEvent = null;
+                }
+                UpdateEventList();
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace OrganizerCore.View.WindowTypes
     public abstract class BasicWindow : IDrawable
     {
         protected int mCurrentWindowIndex = 0;
+        protected bool isReadyForDelete = false;
         public int CurrentWindowIndex
         {
             get { return mCurrentWindowIndex; }
@@ -62,8 +63,6 @@ namespace OrganizerCore.View.WindowTypes
             IsWindowChanged = true;
         }
         
-
-
         public void ShowWindow(bool showed)
         {
             RecursiveShowWindow(this, showed);
@@ -82,6 +81,7 @@ namespace OrganizerCore.View.WindowTypes
         public bool IsWindowHidden { get; set; }
         public bool IsWindowChanged { get; set; }
         public bool IsInteractable { get; set; }
+
 
         // for IDrawable
         public  void Draw()
@@ -145,6 +145,11 @@ namespace OrganizerCore.View.WindowTypes
         public  bool IsHidden()
         {
             return IsWindowHidden;
+        }
+        public  bool ReadyForDeleting
+        {
+            get { return isReadyForDelete; }
+            set { isReadyForDelete = value; }
         }
 
         public virtual void OnAction(ActionEventArgs e)

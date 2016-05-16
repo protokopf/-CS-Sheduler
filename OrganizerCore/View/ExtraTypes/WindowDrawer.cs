@@ -27,6 +27,10 @@ namespace OrganizerCore.View.ExtraTypes
     class WindowDrawer : IWindowDrawer
     {
         private List<IDrawable> mListOfGoals;
+        private void DeleteWindowses()
+        {
+            mListOfGoals.RemoveAll(x => (x.ReadyForDeleting == true));
+        }
 
         
         public int Capacity { get { return mListOfGoals.Count; } }
@@ -51,7 +55,7 @@ namespace OrganizerCore.View.ExtraTypes
         public void CutParentWindow(BasicWindow parent)
         {
             foreach (var child in parent.Childs)
-                mListOfGoals.Remove(child);
+                child.ReadyForDeleting = true;
         }
 
         public void AddGoal(IDrawable dr)
@@ -75,9 +79,10 @@ namespace OrganizerCore.View.ExtraTypes
             foreach (var it in changedItems)
             {
                 it.Clean();
-                if (!it.IsHidden())
+                if (!it.IsHidden() && !it.ReadyForDeleting)
                     it.Draw();
             }
+            DeleteWindowses(); 
         }
     }
 }

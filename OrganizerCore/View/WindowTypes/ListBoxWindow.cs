@@ -18,10 +18,7 @@ namespace OrganizerCore.View.WindowTypes
 
         private void DeleteChilds()
         {
-            foreach (var child in Childs)
-            {
-                child.WinHasChanged();
-            }
+            Childs.ForEach(x => x.WinHasChanged());
             Childs.Clear();
             mCurrentIndex = 0;
             nextItemYPosition = 0;
@@ -47,7 +44,9 @@ namespace OrganizerCore.View.WindowTypes
         private void NextItem()
         {
             int childsCount = Childs.Count;
-            if(childsCount > 1)
+            if (childsCount == 1)
+                Childs[mCurrentWindowIndex].InFocus();
+            else if(childsCount >= 1)
             {
                 if (mCurrentWindowIndex < childsCount - 1)
                 {
@@ -66,7 +65,9 @@ namespace OrganizerCore.View.WindowTypes
         private void PreviousItem()
         {
             int childsCount = Childs.Count;
-            if (childsCount > 1)
+            if (childsCount == 1)
+                Childs[mCurrentWindowIndex].InFocus();
+            else if (childsCount >= 1)
             {
                 if (mCurrentWindowIndex > 0)
                 {
@@ -74,8 +75,6 @@ namespace OrganizerCore.View.WindowTypes
                     Childs[--mCurrentWindowIndex].InFocus();
                 }
             }
-
-            //int innerCursor = mCurrentWindowIndex - mCurrentIndex;
             if (mCurrentWindowIndex == mCurrentIndex - 1 && mCurrentIndex > 0)
             {
                 --mCurrentIndex;
@@ -138,6 +137,7 @@ namespace OrganizerCore.View.WindowTypes
                 AddChildWindow(b);
             }
             this.WinHasChanged();
+            Console.Beep();
         }
     }
 }

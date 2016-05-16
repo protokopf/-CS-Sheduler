@@ -52,7 +52,7 @@ namespace OrganizerCore.View.WindowTypes
         private void PeekLastMessage()
         {
             Label = mMessagesQueue.Dequeue();
-            this.FontColor = ConsoleColor.Red;
+            this.FontColor = ConsoleColor.DarkGreen;
 
             mFirst = Width;
             mLast = Width + Label.Length;
@@ -87,9 +87,9 @@ namespace OrganizerCore.View.WindowTypes
         void IDrawable.Clean()
         {
             int yPos = (Height / 2) + PositionY;
-            for (int i = mFirst; i < Width - 1; ++i)
+            for (int i = 1; i < Width - 1; ++i)
             {
-                Console.SetCursorPosition(((i == 0) ? 1 : i), yPos);
+                Console.SetCursorPosition(i, yPos);
                 Console.Write(' ');
             }
         }

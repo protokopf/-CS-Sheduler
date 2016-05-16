@@ -13,5 +13,11 @@ namespace OrganizerCore.View.ExtraTypes
 
         bool IsChanged();
         bool IsHidden();
+
+        bool ReadyForDeleting
+        {
+            get;
+            set;
+        }
     }
 }
