@@ -56,7 +56,12 @@ namespace OrganizerCore.View
         {
             ICommand updateCommand = new UpdateListCommand(mVisibleEvents);
             OnCommand(updateCommand);
-            mWindowHandler["BasicWindow.ListBoxWindow"].ReactMethod()
+
+            ActionEventArgs e = new ActionEventArgs();
+            int index = 0;
+            e.Storage = mVisibleEvents.ToDictionary<string,string>((s) => { return null; });
+
+            mWindowHandler["BasicWindow.ListBoxWindow"].ReactMethod(this, e);
         }
 
         public int SizeX { get; set; }

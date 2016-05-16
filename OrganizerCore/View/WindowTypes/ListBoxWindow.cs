@@ -99,6 +99,7 @@ namespace OrganizerCore.View.WindowTypes
                     break;
             }
         }
+
         public override void AddChildWindow(BasicWindow chWindow)
         {
             base.AddChildWindow(chWindow);
@@ -113,6 +114,12 @@ namespace OrganizerCore.View.WindowTypes
                 chWindow.IsWindowChanged = false;
             }
             nextItemYPosition += chWindow.Height;
+        }
+        public override void ReactMethod(object sender, ActionEventArgs e)
+        {
+            Childs.Clear();
+            foreach(var newChild in e.Storage)
+                AddChildWindow(new ListBoxItemWindow(newChild.Value));
         }
     }
 }
