@@ -112,10 +112,10 @@ namespace OrganizerCore.View
             {
                 if (Console.KeyAvailable)
                 {
-                    mActiveWindow.KeyReact(Console.ReadKey(true), ref mActiveWindow);
-                    //Console.SetCursorPosition(2, 50);
-                    //Console.Write("Drawer: {0}, Handler: {1}",
-                    //mWindowDrawer.Capacity.ToString(), mWindowHandler.Capacity.ToString());
+                    var key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Delete)
+                        break;
+                    mActiveWindow.KeyReact(key, ref mActiveWindow);
                 }
                 SafeAddMessage();
                 mWindowDrawer.Draw();

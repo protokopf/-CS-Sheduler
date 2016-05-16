@@ -24,13 +24,15 @@ namespace OrganizerCore
 
         public static void Main(string[] args)
         {
-            ConsoleView view = new ConsoleView((int)ConsoleProperties.Width, (int)ConsoleProperties.Height);
             IBaseable   xmlBase = new XMLBase();
             IEqualityComparer<Package> comparer = new FullEqualityComparer();
-            ModelCore model = new ModelCore(xmlBase, comparer);
 
-            ConsolePresenter presenter = new ConsolePresenter(model, view);
-            presenter.Proceed();
+            using(ModelCore model = new ModelCore(xmlBase, comparer))
+            {
+                ConsoleView view = new ConsoleView((int)ConsoleProperties.Width, (int)ConsoleProperties.Height);
+                ConsolePresenter presenter = new ConsolePresenter(model, view);
+                presenter.Proceed();
+            }
         }
     }
 }

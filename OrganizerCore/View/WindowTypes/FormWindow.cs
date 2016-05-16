@@ -16,6 +16,7 @@ namespace OrganizerCore.View.WindowTypes
             foreach(var child in Childs)
                 if(child.IsInteractable && child.Name != "SUBMIT")
                     e.Storage.Add(child.Name, child.ToString());
+           
             return e;
         }
 

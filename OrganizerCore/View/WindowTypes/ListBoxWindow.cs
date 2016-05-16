@@ -107,7 +107,7 @@ namespace OrganizerCore.View.WindowTypes
                     GoToParent(ref activeWindow);
                     break;
                 case ConsoleKey.Enter:
-                    FromParentAction(ref activeWindow);
+                    Childs[mCurrentWindowIndex].FromParentAction(ref activeWindow);
                     break;
             }
         }

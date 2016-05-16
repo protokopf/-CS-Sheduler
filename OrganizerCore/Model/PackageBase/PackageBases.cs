@@ -12,7 +12,7 @@ using IBaseable = OrganizerCore.Model.ModelCore.IModelBaseCommunicator;
 
 namespace OrganizerCore.PackageBases
 {
-    public class XMLBase : IBaseable
+    public class XMLBase : IBaseable, IDisposable
     {
         private readonly string mPathToFile = @"packages.xml";
 
@@ -48,10 +48,12 @@ namespace OrganizerCore.PackageBases
         }
         void          IBaseable.CloseBase()
         {
+            mDocument.Save(mPathToFile);
         }
 
         void          IBaseable.PushPackagesList(List<Package> pList) 
         {
+            mRoot.RemoveAll();
             foreach (var package in pList)
                 ((IBaseable)this).PushOnePackage(package);
             mDocument.Save(mPathToFile);
@@ -71,7 +73,6 @@ namespace OrganizerCore.PackageBases
             foreach (var chain in package.Dictionary)
                 (element.AppendChild(mDocument.CreateElement(chain.Key))).InnerText = chain.Value;
             mRoot.AppendChild(element);
-            mDocument.Save(mPathToFile);
         }
         Package       IBaseable.PullOnePackage(Package package = null)
         {
@@ -82,6 +83,11 @@ namespace OrganizerCore.PackageBases
                 if (CheckNodeAndPackage(node, package)) // проверка на соответствие узла требованиям
                     return FromNodeToPackage(node);
             return newPackage;
+        }
+
+        public void Dispose()
+        {
+            ((IBaseable)this).CloseBase();
         }
     }
 }

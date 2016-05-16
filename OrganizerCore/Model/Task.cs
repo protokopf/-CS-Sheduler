@@ -25,10 +25,13 @@ namespace OrganizerCore.Model
         }
 
         private Package mPackagedView;
-        public Package PackagedView
+        public void  SetPackageView(Package p)
         {
-            get { return mPackagedView; }
-            set { mPackagedView = value; }
+            mPackagedView = p;
+        }
+        public Package  GetPackageView()
+        {
+            return mPackagedView;
         }
 
         private readonly int mId;
@@ -75,7 +78,7 @@ namespace OrganizerCore.Model
         public override bool Equals(object obj)
         {
             MyTask another = (MyTask)obj;
-            return (this.PackagedView.Equals(another.PackagedView));
+            return (this.GetPackageView().Equals(another.GetPackageView()));
         }
     }
 }

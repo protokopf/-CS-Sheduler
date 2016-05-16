@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OrganizerCore.Model
 {
-    public class ModelCore
+    public class ModelCore : IDisposable
     {
         public interface IModelBaseCommunicator
         {
@@ -54,7 +54,7 @@ namespace OrganizerCore.Model
             foreach (var package in pList)
             {
                 MyTask task = mStorageConvertor.FromPackageToMyTask(package);
-                task.PackagedView = package;
+                task.SetPackageView(package);
                 mTaskList.Add(task);
             }
         }
@@ -62,7 +62,7 @@ namespace OrganizerCore.Model
         public MyTask CheckIfTaskExists(Package package)
         {
             foreach (var task in mTaskList)
-                if (mPackageEquater.Equals(package, task.PackagedView))
+                if (mPackageEquater.Equals(package, task.GetPackageView()))
                     return task;
             return null;
         }
@@ -95,7 +95,7 @@ namespace OrganizerCore.Model
             {
                 MyTask newtask = null;
                 newtask = mStorageConvertor.FromPackageToMyTask(package);
-                newtask.PackagedView = package;
+                newtask.SetPackageView(package);
                 mTaskList.Add(newtask);
             }
         }
@@ -107,8 +107,12 @@ namespace OrganizerCore.Model
         }
         public Package GetTask(Package package) // в случае отсутствия пакета, возвращает null
         {
-            return (CheckIfTaskExists(package)).PackagedView;
+            return (CheckIfTaskExists(package)).GetPackageView();
         }
         
+        public void Dispose()
+        {
+            SaveAllTasks();
+        }
     }
 }
