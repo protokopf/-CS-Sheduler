@@ -104,7 +104,7 @@ namespace OrganizerCore.View
         {
             UpdateEventList();
             BindWindowsWithMethods();
-            //mWindowDrawer.InitialDraw();
+            mWindowDrawer.InitialDraw();
             while(true)
             {
                 if (Console.KeyAvailable)
@@ -114,7 +114,6 @@ namespace OrganizerCore.View
                     //Console.Write("Drawer: {0}, Handler: {1}", mWindowDrawer.Capacity.ToString(), mWindowHandler.Capacity.ToString());
                 }
                 mWindowDrawer.Draw();
-               
             }
         }
 

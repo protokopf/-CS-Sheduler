@@ -18,7 +18,7 @@ namespace OrganizerCore.View.WindowTypes
 
         private void DeleteChilds()
         {
-            foreach(var child in Childs)
+            foreach (var child in Childs)
             {
                 child.WinHasChanged();
             }

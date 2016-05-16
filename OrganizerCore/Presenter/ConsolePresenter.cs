@@ -28,8 +28,9 @@ namespace OrganizerCore.Presenter
         private void CheckPresenceMessages(object source, ElapsedEventArgs e)
         {
             string msg = lpModel.CheckEventAdvent();
-            if(msg != null)
-                lpConsole.AddMessageInQueue(msg);
+
+            //if (msg != null)
+            //    lpConsole.AddMessageInQueue(msg);
         }
 
         public ConsolePresenter(ModelCore model, ConsoleView console)

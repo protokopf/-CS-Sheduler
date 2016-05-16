@@ -28,6 +28,7 @@ namespace OrganizerCore.View.ExtraTypes
     {
         private List<IDrawable> mListOfGoals;
 
+        
         public int Capacity { get { return mListOfGoals.Count; } }
 
         public WindowDrawer()
@@ -45,7 +46,6 @@ namespace OrganizerCore.View.ExtraTypes
         public void CompleteParentWindow(BasicWindow parent)
         {
             foreach (var child in parent.Childs)
-                if (!mListOfGoals.Contains(child))
                     mListOfGoals.Add(child);
         }
         public void CutParentWindow(BasicWindow parent)
@@ -66,20 +66,17 @@ namespace OrganizerCore.View.ExtraTypes
         public void InitialDraw()
         {
             foreach (var goal in mListOfGoals)
-                if(!goal.IsHidden())
+                if (!goal.IsHidden())
                     goal.Draw();
         }
         public void Draw()
         {
-            //var changedItems = (from chI in mListOfGoals where (chI.IsChanged() == true) select chI);
-            foreach(var it in mListOfGoals)
+            var changedItems = (from chI in mListOfGoals where (chI.IsChanged() == true) select chI);
+            foreach (var it in changedItems)
             {
-                if (it.IsChanged())
-                {
-                    it.Clean();
-                    if (!it.IsHidden())
-                        it.Draw();
-                }
+                it.Clean();
+                if (!it.IsHidden())
+                    it.Draw();
             }
         }
     }
