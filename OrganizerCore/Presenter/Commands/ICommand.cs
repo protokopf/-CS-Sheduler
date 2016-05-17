@@ -51,9 +51,10 @@ namespace OrganizerCore.Presenter.Commands
             index = i;
         }
 
-        ActionEventArgs Execute(ModelCore model)
+        public ActionEventArgs Execute(ModelCore model)
         {
-            model.DeleteTask()
+            model.DeleteTask(index);
+            return null;
         }
     }
 }

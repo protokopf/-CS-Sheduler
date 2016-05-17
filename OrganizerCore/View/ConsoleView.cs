@@ -52,6 +52,7 @@ namespace OrganizerCore.View
         private void BindWindowsWithMethods()
         {
             mWindowHandler["BasicWindow.SideBlock.ADD"].WinEvent += ShowEventForm;
+            mWindowHandler["BasicWindow.SideBlock.REM"].WinEvent += DeleteEvent;
             mWindowHandler["BasicWindow.EventForm"].WinEvent += PostEventForm;
         }
 
@@ -74,7 +75,18 @@ namespace OrganizerCore.View
             OnCommand(addCommand);
             mListHasChanged = true;
         }
-        private void DeleteEve
+        private void DeleteEvent(object sender, ActionEventArgs e)
+        {
+            if (mWindowHandler["BasicWindow.ListBoxWindow"].Childs.Count > 0)
+            {
+                int index = mWindowHandler["BasicWindow.ListBoxWindow"].CurrentWindowIndex;
+                ICommand deleteEvent = new DeleteEventCommand(index);
+                OnCommand(deleteEvent);
+                mWindowHandler["BasicWindow.ListBoxWindow"].CurrentWindowIndex = 0;
+                mListHasChanged = true;
+            }
+            
+        }
 
         private void UpdateEventList()
         {

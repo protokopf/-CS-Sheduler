@@ -15,6 +15,7 @@ namespace OrganizerCore.View.WindowTypes
         public int CurrentWindowIndex
         {
             get { return mCurrentWindowIndex; }
+            set { mCurrentWindowIndex = value; }
         }
 
         protected void RecursiveShowWindow(BasicWindow win, bool showed)
