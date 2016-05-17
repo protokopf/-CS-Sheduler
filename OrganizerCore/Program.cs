@@ -21,7 +21,6 @@ namespace OrganizerCore
 {
     class Program
     {
-
         public static void Main(string[] args)
         {
             IBaseable   xmlBase = new XMLBase();

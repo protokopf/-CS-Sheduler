@@ -20,10 +20,6 @@ namespace OrganizerCore.View.WindowTypes
             mBuilder.Append(Childs[7] + ":" + Childs[9] + ":" + Childs[11]);
             return (DateTime.TryParse(mBuilder.ToString(),out mDateTime)) ? mDateTime.ToString() : null;
         }
-
-       
-
-
         public DateTimeWindow(string name, int x, int y, int w = 30, int h = 6) : base(name,x,y,w,h)
         {
             mBuilder = new StringBuilder();
@@ -53,7 +49,7 @@ namespace OrganizerCore.View.WindowTypes
         }
         public override bool ValidateWindow()
         {
-            return (TryParseDateTime() != null);
+            return (TryParseDateTime() != null) && mDateTime > DateTime.Now;
         }
     }
 }
