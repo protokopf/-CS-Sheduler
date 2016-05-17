@@ -67,12 +67,14 @@ namespace OrganizerCore.View
             form.ShowWindow(true);
             mActiveWindow = form;
         }
+
         private void PostEventForm(object sender, ActionEventArgs e)
         {
             ICommand addCommand = new AddEventCommand(e);
             OnCommand(addCommand);
             mListHasChanged = true;
         }
+        private void DeleteEve
 
         private void UpdateEventList()
         {

@@ -105,6 +105,7 @@ namespace OrganizerCore.View.WindowTypes
                     break;
                 case ConsoleKey.Escape:
                     GoToParent(ref activeWindow);
+                    Childs[mCurrentWindowIndex].InFocus();
                     break;
                 case ConsoleKey.Enter:
                     Childs[mCurrentWindowIndex].FromParentAction(ref activeWindow);

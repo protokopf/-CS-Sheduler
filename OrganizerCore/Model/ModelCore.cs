@@ -99,12 +99,18 @@ namespace OrganizerCore.Model
                 mTaskList.Add(newtask);
             }
         }
+
         public void    DeleteTask(Package package)
         {
             MyTask deletedTask = CheckIfTaskExists(package);
             if(deletedTask != null)
                 mTaskList.Remove(deletedTask);
         }
+        public void    DeleteTask(int index)
+        {
+            mTaskList.RemoveRange(index, 1);
+        }
+
         public Package GetTask(Package package) // в случае отсутствия пакета, возвращает null
         {
             return (CheckIfTaskExists(package)).GetPackageView();

@@ -27,6 +27,7 @@ namespace OrganizerCore.Presenter.Commands
             return e;
         }
     }
+
     public class AddEventCommand : ICommand
     {
         ActionEventArgs arguments;
@@ -40,6 +41,19 @@ namespace OrganizerCore.Presenter.Commands
         {
             model.AddTask(arguments.Storage);
             return null;
+        }
+    }
+    public class DeleteEventCommand : ICommand
+    {
+        private int index;
+        public DeleteEventCommand(int i)
+        {
+            index = i;
+        }
+
+        ActionEventArgs Execute(ModelCore model)
+        {
+            model.DeleteTask()
         }
     }
 }
